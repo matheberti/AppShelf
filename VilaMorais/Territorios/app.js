@@ -1,78 +1,197 @@
 var app = async function () {
   "use strict"
 
-  let parameters = {}
-  
+  let parameters
+  let holdTimeOut = 0
+  let holdDetection = false
+  const shareData = { title: `Ministério ${new Date(Date.now()).toLocaleDateString("pt-BR")}`, text: "" }
+
   try {
-    const paramRequest = await fetch("param.json")
-    parameters = await paramRequest.json()
+    parameters = await (await fetch("param.json")).json()
   } catch (error) {
     console.error("Erro ao carregar parâmetros:", error.message)
   }
-  
-  const titleElement = document.querySelector("h1")
-  const compassIcon = document.getElementById("compass")
-  const mapElement = document.getElementById("map")
-  const menuFindButton = document.getElementById("find")
-  const menuNotifyButton = document.getElementById("notify")
-  const menuList = document.querySelector("ol")
-  const listItems = document.querySelectorAll("li")
 
-  const view = {
-    setTitle(text) {
-      titleElement.innerText = text
-    },
-    rotateCompass(degrees) {
-      compassIcon.setAttribute("transform", `rotate(${degrees})`)
-    },
-    rotateMap(degrees) {
-      mapElement.firstElementChild.setAttribute("transform", `rotate(${degrees})`)
-    },
-    zoomMap(viewBox) {
-      mapElement.setAttribute("viewBox", viewBox)
-    },
-    toggleMenu() {
-      menuList.classList.toggle("show")
+  const titleElement = document.querySelector("h1"),
+    compassIcon = document.getElementById("compass"),
+    mapElement = document.getElementById("map"),
+    menuFindButton = document.getElementById("find"),
+    menuNotifyButton = document.getElementById("notify"),
+    menuList = document.querySelector("ol"),
+    listItems = document.querySelectorAll("li"),
+    labels = document.getElementById("numbers"),
+    view = {
+      setTitleText(text) {
+        titleElement.innerText = text
+      },
+      setTitleData(number) {
+        titleElement.dataset.number = number
+      },
+      rotateCompass(degrees) {
+        compassIcon.setAttribute("transform", `rotate(${degrees})`)
+      },
+      rotateMap(degrees) {
+        mapElement.firstElementChild.setAttribute("transform", `rotate(${degrees})`)
+      },
+      zoomMap(viewBox) {
+        mapElement.setAttribute("viewBox", viewBox)
+      },
+      toggleMenu() {
+        menuList.classList.toggle("show")
+      },
+      hide(element) {
+        element.classList.add("hide")
+      },
+      show(element) {
+        element.classList.remove("hide")
+      },
+      handlePointerDown(event) {
+        holdTimeOut = setTimeout(() => {
+          holdDetection = true
+
+          let eventTarget = event.target
+          
+          while (eventTarget.tagName !== "path") {
+            eventTarget = eventTarget.previousElementSibling
+          }
+
+          let targetLabel = eventTarget.nextElementSibling.textContent
+
+          if (eventTarget.nextElementSibling.nextElementSibling && eventTarget.nextElementSibling.nextElementSibling.tagName === "text")
+            targetLabel += `/${eventTarget.nextElementSibling.nextElementSibling.textContent}`
+
+          if (eventTarget.attributes.getNamedItem("fill") == null) {
+            navigator.vibrate(200)
+            eventTarget.setAttribute("fill", "#333")
+            shareData.text += targetLabel + "\n"
+          }
+        }, 500)
+      },
+      handlePointerUp(event) {
+        clearTimeout(holdTimeOut)
+        
+        if (!holdDetection) {
+          let eventTarget = event.target
+          
+          while (eventTarget.tagName !== "path") {
+            eventTarget = eventTarget.previousElementSibling
+          }
+          
+          let anySelected = false
+          const territoryNumber = titleElement.dataset.number
+
+          if (territoryNumber !== "0") {
+            document.querySelectorAll(`#g${territoryNumber} path`).forEach(block => {
+              if (block.attributes.getNamedItem("fill") !== null) {
+                anySelected = true
+              }
+            })
+          }
+
+          if (!anySelected) {
+            const [lat, lon] = parameters["t1"]["bA"]
+            window.location.href = `geo:${lat},${lon}`
+          }
+
+          if (eventTarget.attributes.getNamedItem("fill") !== null)
+            eventTarget.removeAttribute("fill")
+        }
+
+        holdDetection = false
+      }
     }
-  }
 
-  menuFindButton.addEventListener("click", view.toggleMenu)
+  let lastItem
 
+  menuFindButton.addEventListener("click", () => {
+    view.toggleMenu()
+
+    shareData.text = ""
+
+    const territoryNumber = titleElement.dataset.number
+
+    if (territoryNumber !== "0") {
+      document.querySelectorAll(`#g${territoryNumber} path`).forEach(block => {
+        block.removeAttribute("fill")
+        block.removeAttribute("style")
+
+        block.removeEventListener("pointerdown", view.handlePointerDown)
+        block.nextElementSibling.removeEventListener("pointerdown", view.handlePointerDown)
+        if (block.nextElementSibling.nextElementSibling && block.nextElementSibling.nextElementSibling.tagName === "text")
+          block.nextElementSibling.nextElementSibling.removeEventListener("pointerdown", view.handlePointerDown)
+
+        block.removeEventListener("pointerup", view.handlePointerUp)
+        block.nextElementSibling.removeEventListener("pointerup", view.handlePointerUp)
+        if (block.nextElementSibling.nextElementSibling && block.nextElementSibling.nextElementSibling.tagName === "text")
+          block.nextElementSibling.nextElementSibling.removeEventListener("pointerup", view.handlePointerUp)
+      })
+    }
+  })
+
+  listItems.forEach(item => {
+    if (item.innerText === titleElement.innerText) {
+      lastItem = item
+    }
+
+    item.addEventListener("click", () => {
+      const { id, innerText } = item,
+        { degrees, viewBox } = parameters[id],
+        territoryNumber = id.slice(1)
+
+      shareData.text = `Território ${territoryNumber}, quadras:\n`
+
+      document.querySelectorAll(`#g${territoryNumber} path`).forEach(block => {
+        block.addEventListener("pointerdown", view.handlePointerDown)
+        block.nextElementSibling.addEventListener("pointerdown", view.handlePointerDown)
+        if (block.nextElementSibling.nextElementSibling && block.nextElementSibling.nextElementSibling.tagName === "text")
+          block.nextElementSibling.nextElementSibling.addEventListener("pointerdown", view.handlePointerDown)
+
+        block.addEventListener("pointerup", view.handlePointerUp)
+        block.nextElementSibling.addEventListener("pointerup", view.handlePointerUp)
+        if (block.nextElementSibling.nextElementSibling && block.nextElementSibling.nextElementSibling.tagName === "text")
+          block.nextElementSibling.nextElementSibling.addEventListener("pointerup", view.handlePointerUp)
+
+        block.setAttribute("style", "fill-opacity:1")
+      })
+
+      if (id === "t0") view.show(labels)
+      else view.hide(labels)
+
+      view.setTitleText(innerText)
+      view.setTitleData(territoryNumber)
+      view.rotateCompass(degrees)
+      view.rotateMap(degrees)
+      view.zoomMap(viewBox)
+      view.toggleMenu()
+      view.hide(item)
+      view.show(lastItem)
+      lastItem = item
+    })
+  })
+  
   menuNotifyButton.addEventListener("click", async () => {
-    const shareData = { title: "Territórios", text: JSON.stringify(parameters.t1) }
+    shareData.text += "Observações: "
 
     try {
       await navigator.share(shareData)
     } catch {
       try {
         await navigator.clipboard.writeText(shareData.text)
-        // Posso criar um elemento <dialog> e uma função setDialog que é mostrada pelo tempo que depende de string.length
+        // TODO: create a <dialog> element to replace alert
         alert("Copiado para a área de transferência.")
       } catch {
+        // TODO: create a <dialog> element to replace alert
         alert("Este dispositivo não me permite compartilhar informações com outros aplicativos.")
       }
     }
-  })
 
-  listItems.forEach(item => {
-    item.addEventListener("click", () => {
-      const { id, innerText } = item
-      const { degrees, viewBox } = parameters[id]
-
-      view.setTitle(innerText)
-      view.rotateCompass(degrees)
-      view.rotateMap(degrees)
-      view.zoomMap(viewBox)
-      view.toggleMenu()
-      // Apagar números grandes
-      // Mostrar detalhes do mapa escolhido
-      // Vou precisar guardar estado para coordenar essas informações
+    const territoryNumber = titleElement.dataset.number,
+      blocks = document.querySelectorAll(`#g${territoryNumber} path`)
+    blocks.forEach(block => {
+      block.removeAttribute("fill")
     })
+    shareData.text = `Território ${territoryNumber}, quadras:\n`
   })
 
   return { view, parameters }
 }()
-
-
-// Ao clicar, levar para um aplicativo de rotas (Google Maps, Waze etc.)
-// Ao clicar e segurar, mudar para a cor escura e adicionar quadra à lista para informar
