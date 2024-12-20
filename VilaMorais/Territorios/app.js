@@ -2,175 +2,137 @@ var app = async function () {
   "use strict"
 
   let parameters
-  let holdTimeOut = 0
+  let holdTimeout = null
   let holdDetection = false
-  const shareData = { title: `Ministério ${new Date(Date.now()).toLocaleDateString("pt-BR")}`, text: "" }
 
   try {
     parameters = await (await fetch("param.json")).json()
   } catch (error) {
-    console.error("Erro ao carregar parâmetros:", error.message)
+    console.error("Error loading parameters:", error)
   }
 
-  const titleElement = document.querySelector("h1"),
-    compassIcon = document.getElementById("compass"),
-    mapElement = document.getElementById("map"),
-    menuFindButton = document.getElementById("find"),
-    menuNotifyButton = document.getElementById("notify"),
-    menuList = document.querySelector("ol"),
-    listItems = document.querySelectorAll("li"),
-    labels = document.getElementById("numbers"),
-    view = {
-      setTitleText(text) {
-        titleElement.innerText = text
-      },
-      setTitleData(number) {
-        titleElement.dataset.number = number
-      },
-      rotateCompass(degrees) {
-        compassIcon.setAttribute("transform", `rotate(${degrees})`)
-      },
-      rotateMap(degrees) {
-        mapElement.firstElementChild.setAttribute("transform", `rotate(${degrees})`)
-      },
-      zoomMap(viewBox) {
-        mapElement.setAttribute("viewBox", viewBox)
-      },
-      toggleMenu() {
-        menuList.classList.toggle("show")
-      },
-      hide(element) {
-        element.classList.add("hide")
-      },
-      show(element) {
-        element.classList.remove("hide")
-      },
-      handlePointerDown(event) {
-        holdTimeOut = setTimeout(() => {
-          holdDetection = true
-
-          let eventTarget = event.target
-          
-          while (eventTarget.tagName !== "path") {
-            eventTarget = eventTarget.previousElementSibling
-          }
-
-          let targetLabel = eventTarget.nextElementSibling.textContent
-
-          if (eventTarget.nextElementSibling.nextElementSibling && eventTarget.nextElementSibling.nextElementSibling.tagName === "text")
-            targetLabel += `/${eventTarget.nextElementSibling.nextElementSibling.textContent}`
-
-          if (eventTarget.attributes.getNamedItem("fill") == null) {
-            navigator.vibrate(200)
-            eventTarget.setAttribute("fill", "#333")
-            shareData.text += targetLabel + "\n"
-          }
-        }, 500)
-      },
-      handlePointerUp(event) {
-        clearTimeout(holdTimeOut)
-        
-        if (!holdDetection) {
-          let eventTarget = event.target
-          
-          while (eventTarget.tagName !== "path") {
-            eventTarget = eventTarget.previousElementSibling
-          }
-          
-          let anySelected = false
-          const territoryNumber = titleElement.dataset.number
-
-          if (territoryNumber !== "0") {
-            document.querySelectorAll(`#g${territoryNumber} path`).forEach(block => {
-              if (block.attributes.getNamedItem("fill") !== null) {
-                anySelected = true
-              }
-            })
-          }
-
-          if (!anySelected) {
-            const [lat, lon] = parameters["t1"]["bA"]
-            window.location.href = `geo:${lat},${lon}`
-          }
-
-          if (eventTarget.attributes.getNamedItem("fill") !== null)
-            eventTarget.removeAttribute("fill")
-        }
-
-        holdDetection = false
+  const coveredBlocks = [],
+  getBlockInfo = target => {
+    while (target.tagName !== "path") target = target.previousElementSibling
+    let label = target.nextElementSibling.textContent
+    if (target.nextElementSibling?.nextElementSibling?.tagName === "text")
+      label += `/${target.nextElementSibling.nextElementSibling.textContent}`
+    return { path: target, label }
+  },
+  handlePointerDown = event => {
+    holdTimeout = setTimeout(() => {
+      const { path, label } = getBlockInfo(event.target)
+      holdDetection = true
+      
+      if (!path.hasAttribute("fill")) {
+        navigator.vibrate(200)
+        path.setAttribute("fill", "#333")
+        coveredBlocks.push(label)
       }
+    }, 500)
+  },
+  handlePointerUp = event => {
+    clearTimeout(holdTimeout)
+    const { path, label } = getBlockInfo(event.target)
+
+    if (holdDetection) {
+      holdDetection = false
+      return
     }
 
-  let lastItem
+    if (coveredBlocks.length === 0) {
+      const [lat, lon] = parameters["t1"]["bA"]
+      window.location.href = `geo:${lat},${lon}`
+    }
 
-  menuFindButton.addEventListener("click", () => {
+    if (path.hasAttribute("fill")) {
+      path.removeAttribute("fill")
+      coveredBlocks.splice(coveredBlocks.indexOf(label), 1)
+    }
+  },
+  view = {
+    setTitleText: text => title.innerText = text,
+    setTitleData: number => title.dataset.number = number,
+    rotateCompass: degrees => compass.setAttribute("transform", `rotate(${degrees})`),
+    rotateMap: degrees => map.firstElementChild.setAttribute("transform", `rotate(${degrees})`),
+    zoomMap: viewBox => map.setAttribute("viewBox", viewBox),
+    toggleMenu: () => menu.classList.toggle("show"),
+    toggleMoreElements: isHome => {
+      if (isHome) {
+        t0.classList.add("hide")
+        numbers.classList.remove("hide")
+      } else {
+        t0.classList.remove("hide")
+        numbers.classList.add("hide")
+      }
+    },
+    setPaths: number => document.querySelectorAll(`#g${number} path`).forEach(path => {
+      path.setAttribute("style", "fill-opacity:1")
+      path.addEventListener("pointerdown", handlePointerDown)
+      path.addEventListener("pointerup", handlePointerUp)
+      path.nextElementSibling.addEventListener("pointerdown", handlePointerDown)
+      path.nextElementSibling.addEventListener("pointerup", handlePointerUp)
+      if (path.nextElementSibling?.nextElementSibling?.tagName === "text") {
+        path.nextElementSibling.nextElementSibling.addEventListener("pointerdown", handlePointerDown)
+        path.nextElementSibling.nextElementSibling.addEventListener("pointerup", handlePointerUp)
+      }
+    }),
+    unsetPaths: (number, removeListeners = true) => document.querySelectorAll(`#g${number} path`).forEach(path => {
+      path.removeAttribute("fill")
+      if (removeListeners) {
+        path.removeAttribute("style")
+        path.removeEventListener("pointerdown", handlePointerDown)
+        path.removeEventListener("pointerup", handlePointerUp)
+        path.nextElementSibling.removeEventListener("pointerdown", handlePointerDown)
+        path.nextElementSibling.removeEventListener("pointerup", handlePointerUp)
+        if (path.nextElementSibling?.nextElementSibling?.tagName === "text") {
+          path.nextElementSibling.nextElementSibling.removeEventListener("pointerdown", handlePointerDown)
+          path.nextElementSibling.nextElementSibling.removeEventListener("pointerup", handlePointerUp)
+        }
+      }
+    })
+  }
+
+  document.getElementById("find").addEventListener("click", () => {
+    const territoryNumber = title.dataset.number
+    if (territoryNumber !== "0") view.unsetPaths(territoryNumber)
     view.toggleMenu()
-
-    shareData.text = ""
-
-    const territoryNumber = titleElement.dataset.number
-
-    if (territoryNumber !== "0") {
-      document.querySelectorAll(`#g${territoryNumber} path`).forEach(block => {
-        block.removeAttribute("fill")
-        block.removeAttribute("style")
-
-        block.removeEventListener("pointerdown", view.handlePointerDown)
-        block.nextElementSibling.removeEventListener("pointerdown", view.handlePointerDown)
-        if (block.nextElementSibling.nextElementSibling && block.nextElementSibling.nextElementSibling.tagName === "text")
-          block.nextElementSibling.nextElementSibling.removeEventListener("pointerdown", view.handlePointerDown)
-
-        block.removeEventListener("pointerup", view.handlePointerUp)
-        block.nextElementSibling.removeEventListener("pointerup", view.handlePointerUp)
-        if (block.nextElementSibling.nextElementSibling && block.nextElementSibling.nextElementSibling.tagName === "text")
-          block.nextElementSibling.nextElementSibling.removeEventListener("pointerup", view.handlePointerUp)
-      })
-    }
+    coveredBlocks.splice(0)
   })
 
-  listItems.forEach(item => {
-    if (item.innerText === titleElement.innerText) {
-      lastItem = item
-    }
-
+  document.querySelectorAll("li").forEach(item => {
     item.addEventListener("click", () => {
       const { id, innerText } = item,
-        { degrees, viewBox } = parameters[id],
-        territoryNumber = id.slice(1)
-
-      shareData.text = `Território ${territoryNumber}, quadras:\n`
-
-      document.querySelectorAll(`#g${territoryNumber} path`).forEach(block => {
-        block.addEventListener("pointerdown", view.handlePointerDown)
-        block.nextElementSibling.addEventListener("pointerdown", view.handlePointerDown)
-        if (block.nextElementSibling.nextElementSibling && block.nextElementSibling.nextElementSibling.tagName === "text")
-          block.nextElementSibling.nextElementSibling.addEventListener("pointerdown", view.handlePointerDown)
-
-        block.addEventListener("pointerup", view.handlePointerUp)
-        block.nextElementSibling.addEventListener("pointerup", view.handlePointerUp)
-        if (block.nextElementSibling.nextElementSibling && block.nextElementSibling.nextElementSibling.tagName === "text")
-          block.nextElementSibling.nextElementSibling.addEventListener("pointerup", view.handlePointerUp)
-
-        block.setAttribute("style", "fill-opacity:1")
-      })
-
-      if (id === "t0") view.show(labels)
-      else view.hide(labels)
-
+      { degrees, viewBox } = parameters[id],
+      idNumber = id.slice(1)
+      
+      if (idNumber !== "0") view.setPaths(idNumber)
       view.setTitleText(innerText)
-      view.setTitleData(territoryNumber)
+      view.setTitleData(idNumber)
       view.rotateCompass(degrees)
       view.rotateMap(degrees)
       view.zoomMap(viewBox)
       view.toggleMenu()
-      view.hide(item)
-      view.show(lastItem)
-      lastItem = item
+      view.toggleMoreElements(id === "t0")
     })
   })
   
-  menuNotifyButton.addEventListener("click", async () => {
-    shareData.text += "Observações: "
+  document.getElementById("notify").addEventListener("click", async () => {
+    if (coveredBlocks.length === 0) {
+      // TODO: create a <dialog> element to replace alert
+      alert("Nenhum território selecionado para informar.")
+      return
+    }
+
+    const territoryNumber = title.dataset.number,
+      shareData = {
+        title: `Ministério ${new Date().toLocaleDateString("pt-BR")}`,
+        text: `Território ${territoryNumber}\n`
+      },
+      filled = coveredBlocks.sort().join(", ").replaceAll(",", (match, index, string) =>
+        index === string.lastIndexOf(match) ? " e" : match
+      )
+    shareData.text += `Quadras trabalhadas: ${filled}\nObservações: `
 
     try {
       await navigator.share(shareData)
@@ -181,16 +143,12 @@ var app = async function () {
         alert("Copiado para a área de transferência.")
       } catch {
         // TODO: create a <dialog> element to replace alert
-        alert("Este dispositivo não me permite compartilhar informações com outros aplicativos.")
+        alert("Este dispositivo não permite compartilhar informações com outros aplicativos.")
       }
     }
 
-    const territoryNumber = titleElement.dataset.number,
-      blocks = document.querySelectorAll(`#g${territoryNumber} path`)
-    blocks.forEach(block => {
-      block.removeAttribute("fill")
-    })
-    shareData.text = `Território ${territoryNumber}, quadras:\n`
+    view.unsetPaths(territoryNumber, false)
+    coveredBlocks.splice(0)
   })
 
   return { view, parameters }
