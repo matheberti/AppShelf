@@ -3,6 +3,7 @@
   color: #333;
   font-family: sans-serif;
   margin: 0;
+  user-select: none;
 }
 
 footer,
@@ -54,6 +55,15 @@ svg.icon path {
   transform-origin: 50% 50%;
 }
 
+dialog {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #333;
+  border-radius: 1em;
+}
+
 ol {
   background-color: #fff;
   bottom: -91vh;
@@ -71,13 +81,17 @@ ol.show {
   bottom: 0;
 }
 
+span {
+  color: #fff;
+}
+
 li {
   align-content: center;
   height: 2lh;
 }
 
 p {
-  font-size: 0.67em;
+  font-size: .67em;
 }
 
 .hide {
