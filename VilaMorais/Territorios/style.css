@@ -27,10 +27,6 @@ footer {
   justify-content: space-around;
 }
 
-div {
-  text-align: center;
-}
-
 h1,
 li {
   overflow-x: auto;
@@ -42,12 +38,12 @@ h1 {
   max-width: calc(100% - 2em);
 }
 
-svg.icon {
+svg.i {
   width: 2em;
   height: 2em;
 }
 
-svg.icon path {
+svg.i path {
   fill: none;
   stroke: #333;
   stroke-linecap: round;
@@ -77,12 +73,16 @@ ol {
   z-index: 1;
 }
 
-ol.show {
+ol.s {
   bottom: 0;
 }
 
 span {
   color: #fff;
+}
+
+div {
+  text-align: center;
 }
 
 li {
@@ -94,6 +94,6 @@ p {
   font-size: .67em;
 }
 
-.hide {
+.h {
   display: none;
 }

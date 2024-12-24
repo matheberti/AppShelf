@@ -1,157 +1,99 @@
-var app = async function () {
+(async () => {
   "use strict"
 
-  let holdDetected, holdTimeout, parameters, pointerMoved
-  const coveredBlocks = new Set(),
-  mainElement = document.querySelector("main"),
-  getBlockInfo = target => {
-    if (target.parentElement.id.slice(1) !== title.dataset.number) {
-      return { path: null, label: null }
-    }
+  const coveredBlocks = new Set,
+  i = document.querySelector("main"),
+  handlePointerEvent = e => {
+    if (e.target?.parentElement?.id !== "g" + t.dataset.n || t.dataset.n === "0" || window.visualViewport.scale > 1) return
+
+    let target = e.target
     while (target.tagName !== "path") target = target.previousElementSibling
+
     let label = target.nextElementSibling.textContent
-    if (target.nextElementSibling?.nextElementSibling?.tagName === "text")
-      label += `/${target.nextElementSibling.nextElementSibling.textContent}`
-    return { path: target, label }
-  },
-  handlePointerDown = event => {
-    holdDetected = false
-    pointerMoved = false
-    holdTimeout = setTimeout(() => {
-      holdDetected = true
-      const { path, label } = getBlockInfo(event.target)
-      if (path && label && !path.hasAttribute("fill")) {
-        navigator.vibrate(200)
-        path.setAttribute("fill", "#333")
-        coveredBlocks.add(label)
-      }
-    }, 500)
-  },
-  handlePointerMove = () => {
-    clearTimeout(holdTimeout)
-    pointerMoved = true
-  },
-  handlePointerUp = event => {
-    clearTimeout(holdTimeout)
-    if (holdDetected || pointerMoved) return
-    const { path, label } = getBlockInfo(event.target)
-    if (path && label && coveredBlocks.size === 0) {
-      const territoryId = path.parentElement.id.replace("g", "t")
-      const [lat, lon] = parameters[territoryId][label]
-      window.location.href = `geo:${lat},${lon}`
+    if (target.nextElementSibling?.nextElementSibling?.tagName === "text") label += "/" + target.nextElementSibling.nextElementSibling.textContent
+    
+    if (e.type == "pointerup" && coveredBlocks.size === 0) {
+      const [latitude, longitude] = parameters[target.parentElement.id.replace("g", "i")][label]
+      window.location.href = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${latitude},${longitude}`
     }
-    if (path && label && path.hasAttribute("fill")) {
-      path.removeAttribute("fill")
+    
+    const hasAtt = target.hasAttribute("fill")
+
+    if (e.type == "pointerup" && hasAtt) {
+      remAtt(target, "fill")
       coveredBlocks.delete(label)
     }
-  },
-  prepareData = territoryNumber => {
-    const filled = [...coveredBlocks].sort().join(", ").replaceAll(",", (match, index, string) =>
-      index === string.lastIndexOf(match) ? " e" : match
-    )
-    return {
-      title: `Ministério ${new Date().toLocaleDateString("pt-BR")}`,
-      text: `Território ${territoryNumber}\nQuadras trabalhadas: ${filled}\nObservações: `
+
+    if (e.type == "pointercancel" && !hasAtt) {
+      setAtt(target, "fill", "#333")
+      coveredBlocks.add(label)
     }
   },
-  shareReport = async data => {
-    try {
-      await navigator.share(data)
-    } catch {
-      await navigator.clipboard.writeText(data.text)
-      view.alert("Copiado para a área de transferência.")
-    }
-  },
-  view = {
-    alert: text => {
-      message.innerText = text
-      alerts.showModal()
-    },
-    setTitleText: text => title.innerText = text,
-    setTitleData: number => title.dataset.number = number,
-    rotateCompass: degrees => compass.setAttribute("transform", `rotate(${degrees})`),
-    rotateMap: degrees => map.firstElementChild.setAttribute("transform", `rotate(${degrees})`),
-    zoomMap: viewBox => map.setAttribute("viewBox", viewBox),
-    toggleMenu: () => menu.classList.toggle("show"),
-    home: () => {
-      t0.classList.add("hide")
-      numbers.classList.remove("hide")
-    },
-    territory: () => {
-      t0.classList.remove("hide")
-      numbers.classList.add("hide")
-    },
-    setPaths: number => {
-      document.querySelectorAll(`#g${number} path`).forEach(path => {
-        path.setAttribute("style", "fill-opacity:1")
-      })
-      mainElement.addEventListener("pointerdown", handlePointerDown)
-      mainElement.addEventListener("pointermove", handlePointerMove)
-      mainElement.addEventListener("pointerup", handlePointerUp)
-    },
-    unsetPaths: (number, removeListener = true) => {
-      document.querySelectorAll(`#g${number} path`).forEach(path => {
-        if (removeListener) path.removeAttribute("style")
-        path.removeAttribute("fill")
-      })
-      if (removeListener) {
-        mainElement.removeEventListener("pointerdown", handlePointerDown)
-        mainElement.removeEventListener("pointermove", handlePointerMove)
-        mainElement.removeEventListener("pointerup", handlePointerUp)
-      }
-    }
-  }
-    
+  forAll = (s, f) => document.querySelectorAll(s).forEach(f),
+  listen = (l, t, f) => l.addEventListener(t, f),
+  setAtt = (l, a, v) => a !== "t" ? l.setAttribute(a, v) : l.setAttribute("transform", `rotate(${v})`),
+  remAtt = (l, a) => l.removeAttribute(a),
+  modal = t => { m.textContent = t, a.showModal() },
+  toggleU = () => u.classList.toggle("s"),
+  clearBlocks = () => coveredBlocks.clear()
+
+  let parameters
   try {
     parameters = await (await fetch("param.json")).json()
-  } catch (error) {
-    view.alert("Não foi possível ativar a interação do mapa, verifique sua internet.")
+  } catch {
+    modal("Não foi possível ativar a interação do mapa, verifique sua internet.")
   }
 
-  document.getElementById("find").addEventListener("click", () => {
-    const territoryNumber = title.dataset.number
+  listen(i, "pointerup", handlePointerEvent)
+  listen(i, "pointercancel", handlePointerEvent)
+  listen(a, "click", () => a.close())
+  forAll("li", l => listen(l, "click", e => {
+    const { degrees, viewBox } = parameters[e.target.id],
+    hideAndShow = (h, s) => { h.classList.add("h"), s.classList.remove("h") }
 
-    if (territoryNumber !== "0") view.unsetPaths(territoryNumber)
-    view.toggleMenu()
-    coveredBlocks.clear()
-  })
+    t.textContent = e.target.textContent
+    t.dataset.n = e.target.id.slice(1)
 
-  document.querySelectorAll("li").forEach(item => item.addEventListener("click", () => {
-    const { id, innerText } = item, { degrees, viewBox } = parameters[id], cutId = id.slice(1)
-
-    if (id === "t0") view.home()
-    else {
-      view.territory()
-      view.setPaths(cutId)
+    if (e.target.id === "i0") {
+      hideAndShow(i0, b)
+    } else {
+      hideAndShow(b, i0)
+      forAll(`#g${t.dataset.n} path`, p => setAtt(p, "style", "fill-opacity:1"))
     }
-    view.setTitleText(innerText)
-    view.setTitleData(cutId)
-    view.rotateCompass(degrees)
-    view.rotateMap(degrees)
-    view.zoomMap(viewBox)
-    view.toggleMenu()
+    setAtt(p, "viewBox", viewBox)
+    setAtt(g, "t", degrees)
+    setAtt(c, "t", degrees)
+    toggleU()
   }))
+  listen(f, "click", () => {
+    toggleU()
+    clearBlocks()
 
-  document.getElementById("notify").addEventListener("click", async () => {
+    if (t.dataset.n !== "0") {
+      forAll(`#g${t.dataset.n} path`, p => { remAtt(p, "fill"), remAtt(p, "style") })
+    }
+  })
+  listen(n, "click", async () => {
     if (coveredBlocks.size === 0) {
-      view.alert("Nenhum território selecionado para informar.")
+      modal("Nenhum território selecionado para informar.")
       return
     }
 
-    const territoryNumber = title.dataset.number,
-    shareData = prepareData(territoryNumber)
+    const filled = [...coveredBlocks].sort().join(", ").replaceAll(",", (match, index, string) => index === string.lastIndexOf(match) ? " e" : match)
+    const data = { text: `Ministério ${new Date().toLocaleDateString("pt-BR")}\nTerritório: ${t.dataset.n}\nQuadras: ${filled}\nObservações: ` }
+
+    clearBlocks()
+    forAll(`#g${t.dataset.n} path`, p => remAtt(p, "fill"))
 
     try {
-      await shareReport(shareData)
+      await navigator.share(data)
     } catch {
-      view.alert("Este dispositivo não permite compartilhar informações com outros aplicativos.")
+      try {
+        await navigator.clipboard.writeText(data.text)
+        modal("Copiado para a área de transferência.")
+      } catch {
+        modal("Este dispositivo não permite compartilhar informações com outros aplicativos.")
+      }
     }
-
-    view.unsetPaths(territoryNumber, false)
-    coveredBlocks.clear()
   })
-
-  document.getElementById("alerts").addEventListener("click", () => alerts.close())
-
-  return view
-}()
+})();
