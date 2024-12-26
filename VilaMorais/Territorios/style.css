@@ -38,26 +38,17 @@ h1 {
   max-width: calc(100% - 2em);
 }
 
-svg.i {
+svg.icon {
   width: 2em;
   height: 2em;
 }
 
-svg.i path {
+svg.icon path {
   fill: none;
   stroke: #333;
   stroke-linecap: round;
   stroke-linejoin: round;
   transform-origin: 50% 50%;
-}
-
-dialog {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  background-color: #333;
-  border-radius: 1em;
 }
 
 ol {
@@ -73,27 +64,37 @@ ol {
   z-index: 1;
 }
 
-ol.s {
-  bottom: 0;
-}
-
-span {
-  color: #fff;
+li {
+  align-content: center;
+  height: 2lh;
 }
 
 div {
   text-align: center;
 }
 
-li {
-  align-content: center;
-  height: 2lh;
+div p {
+  font-size: 0.67em;
 }
 
-p {
-  font-size: .67em;
-}
-
-.h {
+.hide {
   display: none;
+}
+
+.show {
+  bottom: 0;
+}
+
+#alert {
+  background-color: #ddd;
+  border-radius: 1em;
+  color:#999;
+  left: 50%;
+  text-align: center;
+  top: 50%;
+  translate: -50% -50%;
+}
+
+#message {
+  margin-bottom: 8px;
 }
