@@ -52,10 +52,14 @@
     }
 
     if (touch.type === "contextmenu" && coveredBlocks.size === 0) {
-      const [latitude, longitude] = parameters[target.parentElement.id.replace("g", "i")][label]
-      
-      navigator.vibrate(200)
-      window.location.href = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${latitude},${longitude}`
+      try{
+        const [latitude, longitude] = parameters[target.parentElement.id.replace("g", "i")][label]
+        
+        navigator.vibrate(200)
+        window.location.href = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=-16.6${latitude},-49.2${longitude}`
+      } catch {
+        warnUser("As coordenadas da quadra não estão definidas")
+      }
     }
   }
 
