@@ -35,8 +35,10 @@
     }
 
     let label = target.nextElementSibling.textContent
-    if (target.nextElementSibling?.nextElementSibling?.tagName === "text") {
-      label += "/" + target.nextElementSibling.nextElementSibling.textContent
+    let afterText = target.nextElementSibling?.nextElementSibling
+    while (afterText?.tagName === "text") {
+      label += "/" + afterText.textContent
+      afterText = afterText?.nextElementSibling
     }
 
     if (touch.type === "click") {
@@ -51,14 +53,19 @@
       }
     }
 
-    if (touch.type === "contextmenu" && coveredBlocks.size === 0) {
-      try{
-        const [latitude, longitude] = parameters[target.parentElement.id.replace("g", "i")][label]
-        
-        navigator.vibrate(200)
-        window.location.href = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=-16.6${latitude},-49.2${longitude}`
-      } catch {
-        warnUser("As coordenadas da quadra não estão definidas")
+    if (touch.type === "contextmenu") {
+      if (coveredBlocks.size !== 0) {
+        warnUser("Limpe as quadras selecionadas antes de entrar no aplicativo de navegação.")
+      } else {
+        try{
+          const [latitude, longitude] = parameters[target.parentElement.id.replace("g", "i")][label]
+          const formattedLongitude = longitude < 100 ? `0${longitude}` : longitude
+          
+          navigator.vibrate(200)
+          window.location.href = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=-16.6${latitude},-49.2${formattedLongitude}`
+        } catch {
+          warnUser("As coordenadas da quadra não estão definidas.")
+        }
       }
     }
   }
