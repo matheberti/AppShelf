@@ -1,1 +1,101 @@
-*{box-sizing:border-box;color:#333;font-family:sans-serif;margin:0}footer,header{align-items:center;background-color:#ddd;display:flex;height:9vh;justify-content:space-between}header{padding:1em}main{height:82vh}footer{justify-content:space-around}footer div{text-align:center}h1,li{overflow-x:auto;white-space:nowrap}h1{font-size:1.5em;max-width:calc(100% - 2em)}svg.icon{width:2em;height:2em}svg.icon path{fill:none;stroke:#333;stroke-linecap:round;stroke-linejoin:round;transform-origin:50% 50%}ol{background-color:#fff;bottom:-91vh;height:91vh;list-style:none;overflow-y:auto;padding-inline:0.5em;position:fixed;transition:bottom 0.3s ease-in-out;width:100%;z-index:1}ol.show{bottom:0}g{fill-opacity:0.5}li{align-content:center;height:2lh}h6{font-weight:400}.num{dominant-baseline:central;fill:#333;fill-opacity:1;font-size:400pt;paint-order:markers stroke fill;stroke:#fff;stroke-linejoin:bevel;stroke-width:50;text-anchor:middle}
+* {
+    box-sizing: border-box;
+    color: #333;
+    font-family: sans-serif;
+    margin: 0;
+    user-select: none;
+  }
+  
+  footer,
+  header {
+    align-items: center;
+    background-color: #ddd;
+    display: flex;
+    height: 9vh;
+    justify-content: space-between;
+  }
+  
+  header {
+    padding: 1em;
+  }
+  
+  main {
+    height: 82vh;
+  }
+  
+  footer {
+    justify-content: space-around;
+  }
+  
+  h1,
+  li {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  h1 {
+    font-size: 1.5em;
+    max-width: calc(100% - 2em);
+  }
+  
+  svg.icon {
+    width: 2em;
+    height: 2em;
+  }
+  
+  svg.icon path {
+    fill: none;
+    stroke: #333;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform-origin: 50% 50%;
+  }
+  
+  ol {
+    background-color: #fff;
+    bottom: -91vh;
+    height: 91vh;
+    list-style: none;
+    overflow-y: auto;
+    padding-inline: 0.5em;
+    position: fixed;
+    transition: bottom 0.3s ease-in-out;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  li {
+    align-content: center;
+    height: 2lh;
+  }
+  
+  div {
+    text-align: center;
+  }
+  
+  div p {
+    font-size: 0.67em;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  .show {
+    bottom: 0;
+  }
+  
+  #alert {
+    background-color: #ddd;
+    border-radius: 1em;
+    color:#999;
+    left: 50%;
+    text-align: center;
+    top: 50%;
+    translate: -50% -50%;
+  }
+  
+  #message {
+    margin-bottom: 8px;
+  }
+  
