@@ -88,7 +88,7 @@ div p {
 #alert {
   background-color: #ddd;
   border-radius: 1em;
-  color:#999;
+  color: #999;
   left: 50%;
   text-align: center;
   top: 50%;
@@ -97,4 +97,16 @@ div p {
 
 #message {
   margin-bottom: 8px;
+}
+
+#notations {
+  background-color: #fea;
+  border: 2px solid #fc0;
+  border-radius: 2rem;
+  font-size: 3em;
+  height: 4rem;
+  margin: 1rem;
+  position: absolute;
+  right: 0;
+  width: 4rem;
 }

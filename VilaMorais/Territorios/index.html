@@ -18,6 +18,7 @@
         <p id="message">Mensagem</p>
         <button id="button" autofocus>Ok</button>
       </dialog>
+      <div id="notations" class="hide">&#9888;</div>
       <ol id="menu">
         <li id="i0" class="hide">Início</li>
         <li id="i1">Território 1 – Pq. Industrial</li>
@@ -37,7 +38,7 @@
         <li id="i15">Território 15 – St. Leste Universitário</li>
         <li id="i16">Território 16 – St. Leste Universitário</li>
         <li id="i17">Território 17 – St. Leste Universitário</li>
-        <li id="i18">Território 18 – St. Leste Universitário</li>
+        <li id="i18">&#9888; Território 18 – St. Leste Universitário</li>
         <li id="i19">Território 19 – St. Leste Universitário</li>
         <li id="i20">Território 20 – St. Morais</li>
         <li id="i21">Território 21 – St. Morais</li>
@@ -59,39 +60,441 @@
           text{dominant-baseline:central;text-anchor:middle;paint-order:markers stroke fill;stroke-linejoin:bevel}
           .block g text{font-size:2.5em;fill:#fff;stroke:#333;stroke-width:2}
           #numbers{font-size:30em;stroke:#fff;stroke-width:50}
+          #streets path{fill:none}
         </style>
         <g id="group">
-          <text x="175" y="432.5" writing-mode="tb-rl">Av 1</text>
-          <text x="175" y="640" writing-mode="tb-rl">Av 1</text>
-          <text x="175" y="847.5" writing-mode="tb-rl">Av 1</text>
-          <text x="360" y="432.5" writing-mode="tb-rl">Av 2</text>
-          <text x="360" y="640" writing-mode="tb-rl">Av 2</text>
-          <text x="360" y="847.5" writing-mode="tb-rl">Av 2</text>
-          <text x="545" y="432.5" writing-mode="tb-rl">Av 3</text>
-          <text x="545" y="640" writing-mode="tb-rl">Av 3</text>
-          <text x="545" y="847.5" writing-mode="tb-rl">Av 3</text>
-          <text x="175" y="378.5">Rua 1</text>
-          <text x="360" y="378.5">Rua 1</text>
-          <text x="545" y="378.5">Rua 1</text>
-          <text x="175" y="542.5">Rua 2</text>
-          <text x="360" y="542.5">Rua 2</text>
-          <text x="545" y="542.5">Rua 2</text>
-          <text x="175" y="738">Rua 3</text>
-          <text x="360" y="738">Rua 3</text>
-          <text x="545" y="738">Rua 3</text>
-          <text x="175" y="901.5">Rua 4</text>
-          <text x="360" y="901.5">Rua 4</text>
-          <text x="545" y="901.5">Rua 4</text>
+          <g id="streets">
+            <path id="t1-t2-av-leste-oeste" d="m 518.0167,6488.9345 331.63071,-26.9767 730.84619,-64.9885 447.061,-41.2061 168.0501,30.5592 241.6591,58.2631 186.6369,82.1334"/>
+            <path id="t2-rua-7" d="m 2187.4059,6384.8333 -80.6274,460.878"/>
+            <path id="t2-rua-13" d="m 1588.8993,6396.1932 42.0374,464.442"/>
+            <path id="t2-viela-1" d="m 1157.7014,6528.84 -90.2477,7.8566 34.1024,342.565"/>
+            <path id="t2-viela-2" d="m 1157.7014,6528.84 93.5302,-8.2336 27.565,342.1822"/>
+            <path id="t2-t3-rua-4" d="m 907.64021,6936.9456 959.84889,-101.4686 169.922,-0.1444 155.2276,23.2236 330.3265,118.1166"/>
+            <path id="t2-t4-rua-l-8" d="m 2623.9259,6526.7371 -100.9607,449.9357"/>
+            <path id="t2-t5-rua-1" d="m 861.7078,6459.7414 42.32615,477.6492"/>
+            <path id="t3-t4-rua-l-8" d="m 2267.9462,8109.4333 255.019,-1132.7605"/>
+            <path id="t3-rua-5" d="m 1611.5499,7852.0172 101.682,-541.8568"/>
+            <path id="t3-rua-6" d="M 947.70364,7382.6782 2030.4525,7282.0656"/>
+            <path id="t3-rua-7" d="M 1909.9279,7970.031 2106.7805,6845.7163"/>
+            <path id="t3-t4-rua-l-8" d="m 2267.9462,8109.4333 255.019,-1132.7605"/>
+            <path id="t3-t5-rua-1" d="M 971.14526,7608.2087 904.14621,6937.2526"/>
+            <path id="t3-t6-av-anapolis" d="M 970.11385,7603.9781 2267.9691,8109.4629"/>
+            <path id="t4-rua-l-1" d="m 2313.2338,7908.0557 527.6178,214.6289"/>
+            <path id="t4-rua-l-2" d="m 2356.3879,7716.181 560.7457,223.5112"/>
+            <path id="t4-rua-l-3" d="m 2400.6804,7519.165 592.0193,239.2582"/>
+            <path id="t4-rua-l-6" d="m 2494.8076,7100.677 658.1231,267.5112"/>
+            <path id="t4-rua-l-13" d="m 2588.8775,6681.3725 725.5383,293.4689"/>
+            <path id="t4-rua-l-14" d="m 2541.3553,6893.6936 690.4606,282.3701"/>
+            <path id="t4-rua-l-15" d="m 2447.0632,7312.9557 624.2993,253.9055"/>
+            <path id="t4-t6-av-x" d="m 2267.9712,8109.455 491.885,207.4806"/>
+            <path id="t4-t11-rua-l-9" d="m 2759.863,8316.9441 232.8401,-558.5215"/>
+            <path id="t4-t12-rua-l-9" d="m 2992.7083,7758.4255 321.7064,-783.5841"/>
+            <path id="t5-alameda-a" d="m 526.08506,7038.6496 68.27656,-166.7944 -12.66311,-268.4988"/>
+            <path id="t5-al-perimetral" d="M 869.2419,8814.5934 851.04434,8762.6505 676.54402,8496.8171 605.34376,8387.8027 583.17662,8283.6165 531.90138,7687.2386 906.80759,6963.7908"/>
+            <path id="t5-rua-8" d="m 570.43154,8127.4393 401.01834,-260.9665 23.76166,-31.6335"/>
+            <path id="t5-rua-10" d="M 676.54402,8496.8171 1201.8972,8140.9707"/>
+            <path id="t5-r-coronel-cosme" d="M 536.36681,6605.4742 818.39011,6589.6"/>
+            <path id="t5-t6-rua-1" d="m 970.81852,7608.4184 24.41888,226.4169 426.4371,632.7667"/>
+            <path id="t5-t6-rua-f" d="m 1152.2441,8636.8447 939.5651,-595.992"/>
+            <path id="t5-t7-rua-f" d="m 869.2419,8814.5934 283.0022,-177.7487"/>
+            <path id="t6-rua-10" d="m 1201.6461,8141.104 414.9473,-287.5996"/>
+            <path id="t6-rua-805" d="m 1705.2608,8287.011 161.0997,277.9566 300.1119,451.0368"/>
+            <path id="t6-rua-g" d="M 1329.6474,8915.1661 2447.7312,8185.2786"/>
+            <path id="t6-t7-rua-t" d="m 1152.2441,8636.8447 359.1237,563.4021"/>
+            <path id="t6-t9-rua-806" d="m 1511.3678,9200.2468 550.7291,-355.6162"/>
+            <path id="t6-t10-rua-806" d="m 2062.0969,8844.6306 763.7104,-502.1984"/>
+            <path id="t7-rua-801" d="m 869.28303,8814.6509 -47.96656,197.6117 -37.59579,229.282 171.04061,314.4896 321.41331,527.6868"/>
+            <path id="t7-rua-802" d="M 614.57526,9756.708 957.34128,9555.6278"/>
+            <path id="t7-rua-806" d="M 954.76129,9556.0342 1511.3678,9200.2468"/>
+            <path id="t7-rua-807" d="m 1398.6001,9638.5389 215.1192,341.5313"/>
+            <path id="t7-rua-808" d="M 1083.2799,9768.3961 1685.0755,9469.96"/>
+            <path id="t7-rua-g" d="M 790.18684,9256.7142 1330.5885,8912.5179"/>
+            <path id="t7-travessa-2" d="M 946.72511,10021.432 1155.7098,9885.9455"/>
+            <path id="t7-t8-rua-y" d="m 1279.0923,10090.222 675.8019,-213.2053"/>
+            <path id="t7-t9-rua-6" d="m 1505.2259,9199.5583 449.6683,677.4584"/>
+            <path id="t8-av-anhanguera" d="m 962.98996,11282.732 280.03254,34.796"/>
+            <path id="t8-av-independencia" d="m 823.26357,11143.054 28.45145,65.739 111.27494,73.939"/>
+            <path id="t8-rua-801" d="m 1282.2211,10093.428 72.0111,274.233 -34.3626,253.873 -105.5143,192.702 -191.2259,134.248 -171.05647,66.693"/>
+            <path id="t8-rua-807" d="m 1616.9933,9983.6194 193.7606,315.5186 243.7773,256.408"/>
+            <path id="t8-rua-r" d="m 1210.8264,10811.928 288.1313,263.097"/>
+            <path id="t8-rua-s" d="m 1313.789,10626.542 465.1928,191.377"/>
+            <path id="t8-rua-t" d="m 1132.4949,10385.432 701.3304,-62.875"/>
+            <path id="t8-t9-rua-6" d="m 1954.8942,9877.0167 389.6262,412.3433"/>
+            <path id="t8-t13-av-lauricio-p-rasmussem" d="m 1243.0225,11317.528 1100.4868,-1026.84"/>
+            <path id="t9-rua-7" d="m 2136.6278,9593.9439 444.1023,487.0611"/>
+            <path id="t9-rua-808" d="m 1682.8271,9471.8625 590.4405,-299.7686"/>
+            <path id="t9-rua-810" d="m 1858.0046,9730.8155 596.2785,-292.753"/>
+            <path id="t9-rua-y" d="m 1941.9478,9864.9509 700.5529,-219.8503"/>
+            <path id="t9-t10-rua-805" d="m 2166.4724,9016.0044 108.5814,168.7204 174.7844,254.4677 373.8213,404.025"/>
+            <path id="t9-t20-av-lauricio-p-rasmussem" d="m 2345.9752,10298.569 477.5906,-442.6179"/>
+            <path id="t10-rua-808" d="M 2273.2676,9172.0939 3445.4954,8581.9954"/>
+            <path id="t10-rua-810" d="m 2454.2831,9438.0625 1164.401,-597.8392"/>
+            <path id="t10-rua-821" d="m 2476.332,8563.6844 586.5942,939.7088"/>
+            <path id="t10-rua-823" d="m 2748.9933,8392.5855 516.9311,813.264"/>
+            <path id="t10-rua-824" d="m 2984.8035,9378.2521 281.1209,-172.4026"/>
+            <path id="t10-rua-y" d="m 2635.0014,9636.8513 440.9248,-133.4581"/>
+            <path id="t10-viela-810" d="m 2834.5766,8889.5314 171.5846,265.2832"/>
+            <path id="t10-t11-av-x" d="m 2759.8634,8316.9383 941.0058,363.7865"/>
+            <path id="t10-t20-av-lauricio-p-rasmussem" d="m 2817.0556,9848.7399 327.1039,-301.753"/>
+            <path id="t10-t21-av-lauricio-p-rasmussem" d="M 3141.7806,9546.4067 3927.9424,8382.2836"/>
+            <path id="t11-rua-l-1" d="m 2842.1022,8119.6759 861.0511,350.8521"/>
+            <path id="t11-rua-l-2" d="m 2917.2724,7939.3436 788.2061,317.6798"/>
+            <path id="t11-t12-rua-l-3" d="m 2992.7002,7758.4298 521.6205,210.9445 193.4384,78.2387"/>
+            <path id="t11-t22-rua-l-10" d="m 3700.8622,8680.7167 6.8844,-633.1083"/>
+            <path id="t12-rua-l-6" d="m 3152.91,7368.3515 211.9099,84.0532 63.8989,17.8736 67.2964,2.9174 25.9742,-2.1262 192.7715,-67.4368"/>
+            <path id="t12-rua-l-12" d="m 3521.9894,7471.0695 -7.6687,498.3048"/>
+            <path id="t12-rua-l-13" d="m 3314.4142,6974.8442 410.2187,102.5859"/>
+            <path id="t12-rua-l-14" d="m 3232.5251,7174.3031 483.4409,119.6946"/>
+            <path id="t12-rua-l-15" d="m 3072.8252,7563.2331 195.9717,82.9971 77.9505,28.5801 56.1662,10.7151 115.6151,10.2746"/>
+            <path id="t12-t22-rua-l-10" d="m 3718.3363,7075.8507 -10.59,971.7596"/>
+            <path id="t13-av-independencia" d="m 1861.9884,10841.22 986.9184,-225.014"/>
+            <path id="t13-rua-5" d="m 1827.2005,10807.623 102.9365,362.514"/>
+            <path id="t13-rua-6" d="m 2360.2656,10313.782 80.6238,82.258 75.8813,148.018 118.3056,503.622"/>
+            <path id="t13-t20-rua-7" d="m 2592.9904,10098.418 67.9361,81.154 100.0432,174.334 95.2081,249.671 78.4563,375.166"/>
+            <path id="t20-av-independencia" d="m 2878.9713,10604.13 984.0615,-229.412"/>
+            <path id="t20-rua-3" d="m 3605.4554,10092.291 94.9256,-147.7121"/>
+            <path id="t20-rua-4" d="m 2781.0238,10354.372 650.0043,-598.7707"/>
+            <path id="t20-rua-8" d="m 2954.9733,10233.958 85.321,91.762 45.8608,215.558"/>
+            <path id="t20-rua-8-a" d="m 2830.5561,9877.0249 202.4659,225.5201"/>
+            <path id="t20-rua-9" d="m 3141.3512,10022.446 154.8438,145.471 72.7538,324.025 79.6697,363.603"/>
+            <path id="t20-rua-9-a" d="m 3296.195,10167.917 309.2604,-75.626"/>
+            <path id="t20-rua-10" d="m 3792.5033,10011.544 70.5295,363.174"/>
+            <path id="t20-t21-rua-11" d="m 3141.7806,9546.4067 30.9048,41.542 619.8179,423.5953 67.1655,-4.425 59.3784,1.442 54.0761,7.355 46.418,13.267"/>
+            <path id="t21-av-c" d="M 4045.5413,10029.183 4831.7276,8850.5892"/>
+            <path id="t21-rua-3" d="m 3700.381,9944.5789 800.6418,-1238.389"/>
+            <path id="t21-rua-4" d="M 3436.8061,9755.4706 4213.9518,8563.1184"/>
+            <path id="t21-rua-12" d="m 3515.6633,8992.7732 856.2561,562.2539"/>
+            <path id="t21-rua-14" d="m 4293.4965,9027.0989 282.362,186.7783"/>
+            <path id="t21-t23-rua-15" d="m 3948.4882,8428.8743 839.9838,413.7943"/>
+            <path id="t22-rua-l-1" d="m 3703.2627,8460.4149 224.6797,-78.1313"/>
+            <path id="t22-rua-l-2" d="m 3705.5444,8250.8044 408.9098,-149.5159"/>
+            <path id="t22-rua-l-3" d="m 3707.8802,8035.4581 431.6593,-155.8233"/>
+            <path id="t22-rua-l-4" d="m 3710.1167,7829.9811 433.2452,-157.2678"/>
+            <path id="t22-rua-l-5" d="m 3712.4149,7619.6303 434.8706,-158.0935"/>
+            <path id="t22-rua-l-6" d="m 3714.7216,7407.586 436.4827,-158.6447"/>
+            <path id="t22-rua-l-7" d="m 3716.9796,7200.3821 438.1548,-163.0556"/>
+            <path id="t22-rua-l-11" d="m 4136.033,8068.7755 19.0963,-1031.4509"/>
+            <path id="t22-t23-av-lauricio-p-rasmussem" d="m 3917.3086,8398.297 515.8682,-766.7008"/>
+            <path id="t23-av-c" d="M 5547.7767,7775.2599 4831.7276,8850.5892"/>
+            <path id="t23-rua-3" d="M 4529.7147,8696.622 5273.6403,7583.0268"/>
+            <path id="t23-rua-4" d="M 4230.4465,8543.357 4982.4879,7407.7333"/>
+            <path id="t23-rua-16" d="m 4458.7584,7646.4281 777.0861,528.3587"/>
+            <path id="t23-t24-av-lauricio-p-rasmussem" d="M 4433.1768,7631.5962 5222.2904,6463.383"/>
+            <path id="t23-t24-rua-17" d="m 4721.6002,7228.9394 790.749,531.027"/>
+            <path id="t24-av-c" d="m 6198.582,6790.6553 -650.8053,984.6046"/>
+            <path id="t24-rua-3" d="m 5273.369,7572.399 543.3629,-823.3284 338.283,33.0521"/>
+            <path id="t24-rua-4" d="m 4992.0411,7394.1216 266.4987,-406.8764"/>
+            <path id="t24-rua-18" d="m 4977.9623,6845.0892 821.0481,477.4939"/>
+            <path id="t24-t32-av-leste-oeste" d="m 5234.9161,6442.4321 256.1073,-75.4286 262.5287,-14.6667 286.0406,30.2935 411.1661,105.4815"/>
+            <path id="t25-av-leste-oeste" d="m 2623.9259,6526.7371 499.916,230.0816 457.4535,176.2703 296.8992,28.2296 212.9555,-27.7638 371.0191,-93.265 339.6825,-194.4877 433.0644,-203.37"/>
+            <path id="t25-r-das-mangueiras" d="m 4102.6151,6910.1625 -6.6091,-334.4468 71.9669,-32.8266 30.308,-1297.9238"/>
+            <path id="t25-t32-av-lauricio-p-rasmussem" d="m 5234.9161,6442.4321 922.2998,-1378.6951 187.817,-169.9215 533.9444,-307.0632"/>
+            <path id="t25-t32-r-maria-froes" d="m 6345.0329,4886.815 771.1125,414.6619"/>
+            <path id="t26-av-c" d="m 5934.5705,7380.7974 391.6284,-586.112"/>
+            <path id="t26-rua-1" d="m 6571.7106,7533.0619 448.1721,-663.6554"/>
+            <path id="t26-rua-2" d="m 6175.2866,7542.2929 475.3185,-710.3377"/>
+            <path id="t26-rua-20" d="M 6713.5604,7884.7744 7352.5417,6923.995"/>
+            <path id="t26-rua-20-a" d="m 6932.8496,7566.2457 206.3107,142.396"/>
+            <path id="t26-rua-20-b" d="m 7218.6276,7134.5057 212.871,156.0799"/>
+            <path id="t26-r-alcides-maia-costa" d="m 7126.2084,7756.8752 510.7232,358.1368"/>
+            <path id="t26-r-das-industrias" d="m 6345.7705,6798.8289 1007.5948,120.8168"/>
+            <path id="t26-r-monteiro-lobato" d="m 6445.1247,7147.1321 522.4261,348.8966"/>
+            <path id="t26-r-palmito" d="m 6939.8963,8033.0724 802.322,-1203.4556"/>
+            <path id="t26-t27-rua-18" d="m 5925.7032,7411.568 240.5619,132.9317 288.5558,178.2664 235.7748,150.7409"/>
+            <path id="t26-t28-rua-18" d="m 6706.7562,7891.9698 278.3237,182.2245 223.6311,148.6801 239.6741,152.8081 221.4937,138.658"/>
+            <path id="t26-t32-av-leste-oeste" d="m 6837.7359,6595.9846 100.1425,7.1912 933.9476,199.3115 451.022,112.3202"/>
+            <path id="t27-av-c" d="m 4923.2272,8896.3989 429.7692,-648.4702 276.7671,-405.2694 290.0893,-457.5098"/>
+            <path id="t27-rua-1" d="m 5475.4591,9189.7591 394.9925,-588.1927 277.834,-420.3221 302.3639,-457.234"/>
+            <path id="t27-rua-2" d="m 5168.3927,9030.2902 425.7281,-620.9693 274.9942,-413.8984 294.9327,-434.5019"/>
+            <path id="t27-rua-16" d="m 5370.9304,8258.5977 237.1013,162.7034 245.9802,159.9315 247.9879,172.9739"/>
+            <path id="t27-rua-17" d="m 5654.6855,7856.4148 214.4295,139.0077 288.8676,191.9741 242.5307,157.9138"/>
+            <path id="t27-t28-rua-20" d="m 5783,9279.5 341.3026,-515.5782 291.7265,-420.299 280.8136,-423.7655"/>
+            <path id="t27-t29-rua-15" d="m 4905.6837,8895.6452 256.0235,143.5988 283.1878,149.638 280.6846,123.4236"/>
+            <path id="t28-rua-16" d="m 6163.2397,8784.3129 150.1439,104.8606"/>
+            <path id="t28-rua-17" d="m 6441.414,8375.1579 165.0708,115.5025"/>
+            <path id="t28-rua-21-a" d="m 6528.3459,8710.2929 156.7415,142.8137"/>
+            <path id="t28-r-palmito" d="m 6044.1114,9377.9702 303.0675,-482.9336 150.0916,-191.5562 130.2375,-208.7729 294.8071,-449.0526"/>
+            <path id="t28-t29-rua-15" d="m 5783,9279.5 240.5,126.125 240.5,126.125"/>
+            <path id="t28-t29-rua-21" d="m 6264,9531.75 344.1545,-507.7973 111.1445,-181.7278 435.6189,-648.3015"/>
+            <path id="t28-t29-rua-22" d="m 6637.792,9018.4237 433.9506,-217.1988 305.6028,-445.9898"/>
+            <path id="t29-av-anhanguera" d="m 4006.7184,10699.454 906.976,-186.993 410.7007,-289.097 83.3281,-30.201 83.2489,-3.924 71.313,24.127 133.0327,73.837"/>
+            <path id="t29-av-b" d="m 4147.5773,10316.992 681.5145,-146.988"/>
+            <path id="t29-av-c" d="m 4138.6623,10268.606 79.229,-225.53 240.0449,-432.9946 458.4317,-712.8219"/>
+            <path id="t29-rua-1" d="m 4826.086,10160.105 640.5957,-953.6466"/>
+            <path id="t29-rua-2" d="M 4359.335,10266.884 5158.4778,9045.4587"/>
+            <path id="t29-rua-12" d="m 4475.8945,9621.6982 485.3062,332.5011"/>
+            <path id="t29-rua-13" d="m 4569.0788,9954.601 258.0135,177.101"/>
+            <path id="t29-rua-14" d="m 4695.0468,9286.7961 486.7687,332.1306"/>
+            <path id="t29-rua-16-a" d="m 4823.3464,10164.625 67.9055,339.773"/>
+            <path id="t29-rua-20" d="m 5180.6011,10324.094 -21.7004,-41.503 -2.9876,-29.874 8.0535,-37.663 14.9748,-37.954 552.3509,-822.8352"/>
+            <path id="t29-rod-presidente-joao-goulart-br-153" d="m 3988.898,10671.13 126.7631,-345.686"/>
+            <path id="t32-rod-presidente-joao-goulart-br-153" d="M 6493.9084,6496.3694 7183.3357,5320.8023"/>
+            <text>
+              <textPath xlink:href="#t1-t2-av-leste-oeste" startOffset="50%">Av Leste Oeste</textPath>
+              <textPath xlink:href="#t2-rua-7" startOffset="50%">Rua 7</textPath>
+              <textPath xlink:href="#t2-rua-13" startOffset="50%">Rua 13</textPath>
+              <textPath xlink:href="#t2-viela-1" startOffset="50%">Viela 1</textPath>
+              <textPath xlink:href="#t2-viela-2" startOffset="50%">Viela 2</textPath>
+              <textPath xlink:href="#t2-t3-rua-4" startOffset="50%">Rua 4</textPath>
+              <textPath xlink:href="#t2-t4-rua-l-8" startOffset="50%">Rua L-8</textPath>
+              <textPath xlink:href="#t2-t5-rua-1" startOffset="50%">Rua 1</textPath>
+              <textPath xlink:href="#t3-rua-5" startOffset="50%">Rua 5</textPath>
+              <textPath xlink:href="#t3-rua-6" startOffset="50%">Rua 6</textPath>
+              <textPath xlink:href="#t3-rua-7" startOffset="50%">Rua 7</textPath>
+              <textPath xlink:href="#t3-t4-rua-l-8" startOffset="50%">Rua L-8</textPath>
+              <textPath xlink:href="#t3-t5-rua-1" startOffset="50%">Rua 1</textPath>
+              <textPath xlink:href="#t3-t6-av-anapolis" startOffset="50%">Av Anápolis</textPath>
+              <textPath xlink:href="#t4-rua-l-1" startOffset="50%">Rua L-1</textPath>
+              <textPath xlink:href="#t4-rua-l-2" startOffset="50%">Rua L-2</textPath>
+              <textPath xlink:href="#t4-rua-l-3" startOffset="50%">Rua L-3</textPath>
+              <textPath xlink:href="#t4-rua-l-6" startOffset="50%">Rua L-6</textPath>
+              <textPath xlink:href="#t4-rua-l-13" startOffset="50%">Rua L-13</textPath>
+              <textPath xlink:href="#t4-rua-l-14" startOffset="50%">Rua L-14</textPath>
+              <textPath xlink:href="#t4-rua-l-15" startOffset="50%">Rua L-15</textPath>
+              <textPath xlink:href="#t4-t6-av-x" startOffset="50%">Av X</textPath>
+              <textPath xlink:href="#t4-t11-rua-l-9" startOffset="50%">Rua L-9</textPath>
+              <textPath xlink:href="#t4-t12-rua-l-9" startOffset="50%">Rua L-9</textPath>
+              <textPath xlink:href="#t5-alameda-a" startOffset="50%">Alameda A</textPath>
+              <textPath xlink:href="#t5-al-perimetral" startOffset="50%">Al Perimetral</textPath>
+              <textPath xlink:href="#t5-rua-8" startOffset="50%">Rua 8</textPath>
+              <textPath xlink:href="#t5-rua-10" startOffset="50%">Rua 10</textPath>
+              <textPath xlink:href="#t5-r-coronel-cosme" startOffset="50%">R Coronel Cosme</textPath>
+              <textPath xlink:href="#t5-t6-rua-1" startOffset="50%">Rua 1</textPath>
+              <textPath xlink:href="#t5-t6-rua-f" startOffset="50%">Rua F</textPath>
+              <textPath xlink:href="#t5-t7-rua-f" startOffset="50%">Rua F</textPath>
+              <textPath xlink:href="#t6-rua-10" startOffset="50%">Rua 10</textPath>
+              <textPath xlink:href="#t6-rua-805" startOffset="50%">Rua 805</textPath>
+              <textPath xlink:href="#t6-rua-g" startOffset="50%">Rua G</textPath>
+              <textPath xlink:href="#t6-t7-rua-t" startOffset="50%">Rua T</textPath>
+              <textPath xlink:href="#t6-t9-rua-806" startOffset="50%">Rua 806</textPath>
+              <textPath xlink:href="#t6-t10-rua-806" startOffset="50%">Rua 806</textPath>
+              <textPath xlink:href="#t7-rua-801" startOffset="50%">Rua 801</textPath>
+              <textPath xlink:href="#t7-rua-802" startOffset="50%">Rua 802</textPath>
+              <textPath xlink:href="#t7-rua-806" startOffset="50%">Rua 806</textPath>
+              <textPath xlink:href="#t7-rua-807" startOffset="50%">Rua 807</textPath>
+              <textPath xlink:href="#t7-rua-808" startOffset="50%">Rua 808</textPath>
+              <textPath xlink:href="#t7-rua-g" startOffset="50%">Rua G</textPath>
+              <textPath xlink:href="#t7-travessa-2" startOffset="50%">Travessa 2</textPath>
+              <textPath xlink:href="#t7-t8-rua-y" startOffset="50%">Rua Y</textPath>
+              <textPath xlink:href="#t7-t9-rua-6" startOffset="50%">Rua 6</textPath>
+              <textPath xlink:href="#t8-av-anhanguera" startOffset="50%">Av Anhanguera</textPath>
+              <textPath xlink:href="#t8-av-independencia" startOffset="50%">Av Independência</textPath>
+              <textPath xlink:href="#t8-rua-801" startOffset="50%">Rua 801</textPath>
+              <textPath xlink:href="#t8-rua-807" startOffset="50%">Rua 807</textPath>
+              <textPath xlink:href="#t8-rua-r" startOffset="50%">Rua R</textPath>
+              <textPath xlink:href="#t8-rua-s" startOffset="50%">Rua S</textPath>
+              <textPath xlink:href="#t8-rua-t" startOffset="50%">Rua T</textPath>
+              <textPath xlink:href="#t8-t9-rua-6" startOffset="50%">Rua 6</textPath>
+              <textPath xlink:href="#t8-t13-av-lauricio-p-rasmussem" startOffset="50%">Av Laurício P Rasmussem</textPath>
+              <textPath xlink:href="#t9-rua-7" startOffset="50%">Rua 7</textPath>
+              <textPath xlink:href="#t9-rua-808" startOffset="50%">Rua 808</textPath>
+              <textPath xlink:href="#t9-rua-810" startOffset="50%">Rua 810</textPath>
+              <textPath xlink:href="#t9-rua-y" startOffset="50%">Rua Y</textPath>
+              <textPath xlink:href="#t9-t10-rua-805" startOffset="50%">Rua 805</textPath>
+              <textPath xlink:href="#t9-t20-av-lauricio-p-rasmussem" startOffset="50%">Av Laurício P Rasmussem</textPath>
+              <textPath xlink:href="#t10-rua-808" startOffset="50%">Rua 808</textPath>
+              <textPath xlink:href="#t10-rua-810" startOffset="50%">Rua 810</textPath>
+              <textPath xlink:href="#t10-rua-821" startOffset="50%">Rua 821</textPath>
+              <textPath xlink:href="#t10-rua-823" startOffset="50%">Rua 823</textPath>
+              <textPath xlink:href="#t10-rua-824" startOffset="50%">Rua 824</textPath>
+              <textPath xlink:href="#t10-rua-y" startOffset="50%">Rua Y</textPath>
+              <textPath xlink:href="#t10-viela-810" startOffset="50%">Viela 810</textPath>
+              <textPath xlink:href="#t10-t11-av-x" startOffset="50%">Av X</textPath>
+              <textPath xlink:href="#t10-t20-av-lauricio-p-rasmussem" startOffset="50%">Av Laurício P Rasmussem</textPath>
+              <textPath xlink:href="#t10-t21-av-lauricio-p-rasmussem" startOffset="50%">Av Laurício P Rasmussem</textPath>
+              <textPath xlink:href="#t11-rua-l-1" startOffset="50%">Rua L-1</textPath>
+              <textPath xlink:href="#t11-rua-l-2" startOffset="50%">Rua L-2</textPath>
+              <textPath xlink:href="#t11-t12-rua-l-3" startOffset="50%">Rua L-3</textPath>
+              <textPath xlink:href="#t11-t22-rua-l-10" startOffset="50%">Rua L-10</textPath>
+              <textPath xlink:href="#t12-rua-l-6" startOffset="50%">Rua L-6</textPath>
+              <textPath xlink:href="#t12-rua-l-12" startOffset="50%">Rua L-12</textPath>
+              <textPath xlink:href="#t12-rua-l-13" startOffset="50%">Rua L-13</textPath>
+              <textPath xlink:href="#t12-rua-l-14" startOffset="50%">Rua L-14</textPath>
+              <textPath xlink:href="#t12-rua-l-15" startOffset="50%">Rua L-15</textPath>
+              <textPath xlink:href="#t12-t22-rua-l-10" startOffset="50%">Rua L-10</textPath>
+              <textPath xlink:href="#t13-av-independencia" startOffset="50%">Av Independência</textPath>
+              <textPath xlink:href="#t13-rua-5" startOffset="50%">Rua 5</textPath>
+              <textPath xlink:href="#t13-rua-6" startOffset="50%">Rua 6</textPath>
+              <textPath xlink:href="#t13-t20-rua-7" startOffset="50%">Rua 7</textPath>
+              <textPath xlink:href="#t20-av-independencia" startOffset="50%">Av Independência</textPath>
+              <textPath xlink:href="#t20-rua-3" startOffset="50%">Rua 3</textPath>
+              <textPath xlink:href="#t20-rua-4" startOffset="50%">Rua 4</textPath>
+              <textPath xlink:href="#t20-rua-8" startOffset="50%">Rua 8</textPath>
+              <textPath xlink:href="#t20-rua-8-a" startOffset="50%">Rua 8-A</textPath>
+              <textPath xlink:href="#t20-rua-9" startOffset="50%">Rua 9</textPath>
+              <textPath xlink:href="#t20-rua-9-a" startOffset="50%">Rua 9-A</textPath>
+              <textPath xlink:href="#t20-rua-10" startOffset="50%">Rua 10</textPath>
+              <textPath xlink:href="#t20-t21-rua-11" startOffset="50%">Rua 11</textPath>
+              <textPath xlink:href="#t21-av-c" startOffset="50%">Av C</textPath>
+              <textPath xlink:href="#t21-rua-3" startOffset="50%">Rua 3</textPath>
+              <textPath xlink:href="#t21-rua-4" startOffset="50%">Rua 4</textPath>
+              <textPath xlink:href="#t21-rua-12" startOffset="50%">Rua 12</textPath>
+              <textPath xlink:href="#t21-rua-14" startOffset="50%">Rua 14</textPath>
+              <textPath xlink:href="#t21-t23-rua-15" startOffset="50%">Rua 15</textPath>
+              <textPath xlink:href="#t22-rua-l-1" startOffset="50%">Rua L-1</textPath>
+              <textPath xlink:href="#t22-rua-l-2" startOffset="50%">Rua L-2</textPath>
+              <textPath xlink:href="#t22-rua-l-3" startOffset="50%">Rua L-3</textPath>
+              <textPath xlink:href="#t22-rua-l-4" startOffset="50%">Rua L-4</textPath>
+              <textPath xlink:href="#t22-rua-l-5" startOffset="50%">Rua L-5</textPath>
+              <textPath xlink:href="#t22-rua-l-6" startOffset="50%">Rua L-6</textPath>
+              <textPath xlink:href="#t22-rua-l-7" startOffset="50%">Rua L-7</textPath>
+              <textPath xlink:href="#t22-rua-l-11" startOffset="50%">Rua L-11</textPath>
+              <textPath xlink:href="#t22-t23-av-lauricio-p-rasmussem" startOffset="50%">Av Laurício P Rasmussem</textPath>
+              <textPath xlink:href="#t23-av-c" startOffset="50%">Av C</textPath>
+              <textPath xlink:href="#t23-rua-3" startOffset="50%">Rua 3</textPath>
+              <textPath xlink:href="#t23-rua-4" startOffset="50%">Rua 4</textPath>
+              <textPath xlink:href="#t23-rua-16" startOffset="50%">Rua 16</textPath>
+              <textPath xlink:href="#t23-t24-av-lauricio-p-rasmussem" startOffset="50%">Av Laurício P Rasmussem</textPath>
+              <textPath xlink:href="#t23-t24-rua-17" startOffset="50%">Rua 17</textPath>
+              <textPath xlink:href="#t24-av-c" startOffset="50%">Av C</textPath>
+              <textPath xlink:href="#t24-rua-3" startOffset="50%">Rua 3</textPath>
+              <textPath xlink:href="#t24-rua-4" startOffset="50%">Rua 4</textPath>
+              <textPath xlink:href="#t24-rua-18" startOffset="50%">Rua 18</textPath>
+              <textPath xlink:href="#t24-t32-av-leste-oeste" startOffset="50%">Av Leste Oeste</textPath>
+              <textPath xlink:href="#t25-av-leste-oeste" startOffset="50%">Av Leste Oeste</textPath>
+              <textPath xlink:href="#t25-r-das-mangueiras" startOffset="50%">R das Mangueiras</textPath>
+              <textPath xlink:href="#t25-t32-av-lauricio-p-rasmussem" startOffset="50%">Av Laurício P Rasmussem</textPath>
+              <textPath xlink:href="#t25-t32-r-maria-froes" startOffset="50%">R Maria Fróes</textPath>
+              <textPath xlink:href="#t26-av-c" startOffset="50%">Av C</textPath>
+              <textPath xlink:href="#t26-rua-1" startOffset="50%">Rua 1</textPath>
+              <textPath xlink:href="#t26-rua-2" startOffset="50%">Rua 2</textPath>
+              <textPath xlink:href="#t26-rua-20" startOffset="50%">Rua 20</textPath>
+              <textPath xlink:href="#t26-rua-20-a" startOffset="50%">Rua 20-A</textPath>
+              <textPath xlink:href="#t26-rua-20-b" startOffset="50%">Rua 20-B</textPath>
+              <textPath xlink:href="#t26-r-alcides-maia-costa" startOffset="50%">R Alcides Maia Costa</textPath>
+              <textPath xlink:href="#t26-r-das-industrias" startOffset="50%">R das Indústrias</textPath>
+              <textPath xlink:href="#t26-r-monteiro-lobato" startOffset="50%">R Monteiro Lobato</textPath>
+              <textPath xlink:href="#t26-r-palmito" startOffset="50%">R Palmito</textPath>
+              <textPath xlink:href="#t26-t27-rua-18" startOffset="50%">Rua 18</textPath>
+              <textPath xlink:href="#t26-t28-rua-18" startOffset="50%">Rua 18</textPath>
+              <textPath xlink:href="#t26-t32-av-leste-oeste" startOffset="50%">Av Leste Oeste</textPath>
+              <textPath xlink:href="#t27-av-c" startOffset="50%">Av C</textPath>
+              <textPath xlink:href="#t27-rua-1" startOffset="50%">Rua 1</textPath>
+              <textPath xlink:href="#t27-rua-2" startOffset="50%">Rua 2</textPath>
+              <textPath xlink:href="#t27-rua-16" startOffset="50%">Rua 16</textPath>
+              <textPath xlink:href="#t27-rua-17" startOffset="50%">Rua 17</textPath>
+              <textPath xlink:href="#t27-t28-rua-20" startOffset="50%">Rua 20</textPath>
+              <textPath xlink:href="#t27-t29-rua-15" startOffset="50%">Rua 15</textPath>
+              <textPath xlink:href="#t28-rua-16" startOffset="50%">Rua 16</textPath>
+              <textPath xlink:href="#t28-rua-17" startOffset="50%">Rua 17</textPath>
+              <textPath xlink:href="#t28-rua-21-a" startOffset="50%">Rua 21-A</textPath>
+              <textPath xlink:href="#t28-r-palmito" startOffset="50%">R Palmito</textPath>
+              <textPath xlink:href="#t28-t29-rua-15" startOffset="50%">Rua 15</textPath>
+              <textPath xlink:href="#t28-t29-rua-21" startOffset="50%">Rua 21</textPath>
+              <textPath xlink:href="#t28-t29-rua-22" startOffset="50%">Rua 22</textPath>
+              <textPath xlink:href="#t29-av-anhanguera" startOffset="50%">Av Anhanguera</textPath>
+              <textPath xlink:href="#t29-av-b" startOffset="50%">Av B</textPath>
+              <textPath xlink:href="#t29-av-c" startOffset="50%">Av C</textPath>
+              <textPath xlink:href="#t29-rua-1" startOffset="50%">Rua 1</textPath>
+              <textPath xlink:href="#t29-rua-2" startOffset="50%">Rua 2</textPath>
+              <textPath xlink:href="#t29-rua-12" startOffset="50%">Rua 12</textPath>
+              <textPath xlink:href="#t29-rua-13" startOffset="50%">Rua 13</textPath>
+              <textPath xlink:href="#t29-rua-14" startOffset="50%">Rua 14</textPath>
+              <textPath xlink:href="#t29-rua-16-a" startOffset="50%">Rua 16-A</textPath>
+              <textPath xlink:href="#t29-rua-20" startOffset="50%">Rua 20</textPath>
+              <textPath xlink:href="#t29-rod-presidente-joao-goulart-br-153" startOffset="50%">Rod Presidente João Goulart (BR-153)</textPath>
+              <textPath xlink:href="#t32-rod-presidente-joao-goulart-br-153" startOffset="50%">Rod Presidente João Goulart (BR-153)</textPath>
+            </text>
+          </g>
+          <!-- Território 1 -->
+          <text x="3191.3474" y="5586.1328" transform="rotate(13.2)">Av Jaó</text>
+          <text x="3717.0847" y="4625.5371" transform="rotate(26.4)">Av Jaó</text>
+          <text x="4632.2979" y="4184.2598" transform="rotate(33.513103)">Av Jaó</text>
+          <text x="759.69348" y="6264.5361" transform="rotate(-3.9165075)">Rua 2</text>
+          <text x="-6012.1831" y="2563.9038" transform="rotate(-84.9)">R Amaro Pereira</text>
+          <text x="-1891.2413" y="6132.5171" transform="rotate(-37.115202)">R da Paz</text>
+          <text x="-125.99603" y="6330.9385" transform="rotate(-24.200403)">R da Paz</text>
+          <text x="3087.9099" y="5192.0347" transform="rotate(20.1)">R dos Trabalhadores</text>
+          <text x="2825.5779" y="6020.2129" transform="rotate(5.1)">R Esperança</text>
+          <text x="-4555.8975" y="3493.4741" transform="rotate(-63.6)">R Jaó</text>
+          <text x="3304.7708" y="4713.3687" transform="rotate(26.4)">R Jaó</text>
+          <text x="3595.8489" y="5448.0122" transform="rotate(12.028606)">R Liberdade</text>
+          <text x="-5368.9854" y="3903.906" transform="rotate(-76.779873)">R Oito</text>
+          <text x="-3850.2773" y="4902.8633" transform="rotate(-51.167782)">R Pardal</text>
+          <text x="-5822.3218" y="1851.9829" transform="rotate(-80.327012)">Rua Perdiz</text>
+          <text x="-5657.2266" y="2116.7085" transform="rotate(-75.774173)">Rua Sabiá</text>
+          <text x="-5695.1255" y="3024.9978" transform="rotate(-84.5)">R Vitória</text>
+          <!-- Setor Universitário -->
+          <text x="11710.574" y="-668.54547" transform="rotate(84.738201)">Av A</text>
+          <text x="12207.482" y="-670.69427" transform="rotate(84.738201)">Av A</text>
+          <text x="-3092.1709" y="11051.443" transform="rotate(-21.91243)">Av Anhanguera</text>
+          <text x="-50.650902" y="11350.877" transform="rotate(-11.5)">Av Anhanguera</text>
+          <text x="1021.6458" y="11330.993" transform="rotate(-11.5)">Av Anhanguera</text>
+          <text x="-2403.5085" y="12219.449" transform="rotate(-17.443561)">Av Universitária</text>
+          <text x="-12188.367" y="8414.8916" transform="rotate(-61.646445)">Rod Presidente João Goulart (BR-153)</text>
+          <text x="-10830.235" y="8437.6973" transform="rotate(-61.646445)">Rod Presidente João Goulart (BR-153)</text>
+          <text x="-8995.6807" y="7548.6104" transform="rotate(-67.220836)">Rod Presidente João Goulart (BR-153)</text>
+          <text x="-16.810984" y="11701.301" transform="rotate(-13)">Rua 1</text>
+          <text x="-158.24661" y="12017.638" transform="rotate(-13)">Rua 2</text>
+          <text x="-296.82608" y="12345.579" transform="rotate(-13)">Rua 3</text>
+          <text x="-614.00714" y="12636.37" transform="rotate(-12.6)">Rua 4</text>
+          <text x="274.8277" y="12919.583" transform="rotate(-8.134675)">Rua 5</text>
+          <text x="-9992.4941" y="6983.6021" transform="rotate(-67.8)">Rua 6</text>
+          <text x="-9963.7109" y="7803.0688" transform="rotate(-63.4)">Rua 6</text>
+          <text x="11694.957" y="-252.06671" transform="rotate(77.9)">Rua 6</text>
+          <text x="12478.534" y="-383.40878" transform="rotate(80.2)">Rua 6-A</text>
+          <text x="11479.538" y="-1408.167" transform="rotate(81.4)">Rua 7</text>
+          <text x="-1673.7463" y="14584.103" transform="rotate(-11.7)">Rua 228</text>
+          <text x="13103.294" y="734.3111" transform="rotate(82.3)">Rua 262</text>
+          <text x="12133.035" y="419.64542" transform="rotate(83.649352)">Rua 262</text>
+          <text x="-809.37671" y="11693.662" transform="rotate(-10.6)">Rua 301</text>
+          <text x="-2242.9951" y="11939.655" transform="rotate(-16.682952)">Rua 303</text>
+          <text x="12735.682" y="21.603315" transform="rotate(81.780835)">Rua 304</text>
+          <text x="-1488.9781" y="12697.254" transform="rotate(-13)">Rua 305</text>
+          <text x="-1526.5696" y="13013.012" transform="rotate(-13)">Rua 307</text>
+          <text x="-12800.851" y="-3623.9197" transform="rotate(-115.07292)">R Angra dos Reis</text>
+          <text x="-10895.899" y="8321.749" transform="rotate(-62.1)">R Araguari</text>
+          <text x="-9669.7324" y="8315.3994" transform="rotate(-62.1)">R Araguari</text>
+          <text x="-11437.812" y="9115.3564" transform="rotate(-58.1)">R Araguari</text>
+          <text x="-13756.33" y="-1667.23" transform="rotate(-104.42)">R Araxá</text>
+          <text x="-11059.673" y="7608.2544" transform="rotate(-60.8)">R Conquista</text>
+          <text x="11937.471" y="17.264719" transform="rotate(83.6)">R Paschoal Trepich'o</text>
+          <text x="12882.555" y="-304.41498" transform="rotate(85.1)">R Paschoal Trepich'o</text>
+          <text x="-4311.7207" y="12447.158" transform="rotate(-29.648966)">R Petrolina</text>
+          <text x="-11750.927" y="8068.7207" transform="rotate(-61.880913)">R S João Del Rei</text>
+          <text x="-10721.281" y="8010.603" transform="rotate(-62.196686)">R S João Del Rei</text>
+          <text x="-14683.139" y="7.7859998" transform="rotate(-94.61)">R Uberaba</text>
+          <text x="-11024.724" y="7897.271" transform="rotate(-60.911895)">R Valença</text>
+          <text x="-14425.759" y="-1477.8776" transform="rotate(-101.564)">R Viçosa</text>
+          <!-- Conjunto Caiçara -->
+          <text x="9448.4434" y="-4653.2915" transform="rotate(54.241206)">Al Dona Iracema C Almeida</text>
+          <text x="7608.5396" y="-8170.6992" transform="rotate(55.998607)">Av Governador José L de Almeida</text>
+          <text x="10547.857" y="-1707.6753" transform="rotate(28.336633)">R Antônio Ludovico</text>
+          <text x="10687.982" y="-488.35538" transform="rotate(28.071081)">R Augusto Kubitschek</text>
+          <text x="10540.018" y="-2636.6602" transform="rotate(28.913627)">R Bento Gonçalves</text>
+          <text x="4074.5686" y="9875.3477" transform="rotate(-59.076434)">R Bráulio G de Azevedo</text>
+          <text x="10485.841" y="-3652.033" transform="rotate(28.913627)">R Cabo Verde</text>
+          <text x="10637.782" y="-2855.7366" transform="rotate(28.913627)">R Cadete João F Azevedo</text>
+          <text x="10546.406" y="-3141.1318" transform="rotate(28.913627)">R Dona Adelina F Almeida</text>
+          <text x="898.17419" y="10896.749" transform="rotate(-62.000987)">R Dona Maria C M de Figueiredo</text>
+          <text x="2692.7271" y="10888.383" transform="rotate(-61.832703)">R Dona Maria C M de Figueiredo</text>
+          <text x="10624.903" y="-1237.1747" transform="rotate(29.112998)">R Dona Maria J C Kubitschek</text>
+          <text x="1447.0046" y="10155.521" transform="rotate(-59.666235)">R Dona Maria K de Figueiredo</text>
+          <text x="3248.9265" y="10159.368" transform="rotate(-59.620589)">R Dona Maria K de Figueiredo</text>
+          <text x="10537.544" y="-2440.5144" transform="rotate(28.913627)">R Dona Virginia K Fonseca</text>
+          <text x="4621.9795" y="9422.7793" transform="rotate(-55.786975)">R Dona Yara A M de Sá</text>
+          <text x="10321.417" y="-3421.2708" transform="rotate(28.913627)">R Doutor Francisco L de Almeida</text>
+          <text x="10530.83" y="-770.69574" transform="rotate(28.107156)">R Francisco Rabelo</text>
+          <text x="10543.111" y="-1499.4747" transform="rotate(28.336633)">R Irmã Helena Figueiredo</text>
+          <text x="10538.628" y="-1304.4814" transform="rotate(28.336633)">R Irmã Luiza Duffour</text>
+          <text x="1274.6151" y="11200.842" transform="rotate(-61.436539)">R Paulo Márcio</text>
+          <text x="2734.3489" y="11200.116" transform="rotate(-61.596302)">R Paulo Márcio</text>
+          <text x="10535.253" y="-2239.9004" transform="rotate(28.913627)">R Professora Gabriela Neves</text>
+          <text x="10699.1" y="-1710.1659" transform="rotate(27.202855)">R Senador João Kubitschek</text>
+          <text x="481.30164" y="10608.234" transform="rotate(-60.644152)">R Tereza Marques</text>
           <g fill="#063">
+            <path d="m 1863.3191,10781.043 16.5854,-12.923 14.1804,22.704 -19.3388,7.819 -32.0324,8.395 -9.263,-1.107 z"/>
             <path d="m 10877.5,54.5 1136.762,1672.6045 1197.97,320.995 -47.531,57.1514 2.84,18.5378 -66.793,106.247 -199.698,259.4165 -24.647,54.6922 -30.093,9.0526 -5.98,22.9242 -9.915,8.3612 -19.121,2.1585 -24.583,12.4644 -58.636,-12.3116 h -5.454 l -22.765,2.3218 h -37.909 l -24.104,4.9115 -16.601,26.2916 -40.122,28.2885 -18.118,15.6004 -12.091,30.2615 -8.955,33.3585 -7.589,52.187 -22.113,50.6276 -40.157,68.7019 -193.842,-220.7569 -103.933,-120.0352 -22.392,-24.7365 -217.752,-179.434 -31.197,-19.825 -124.133,-56.645 -99.501,-30.9552 -126.329,-33.0644 -80.489,-27.281 -66.651,-25.8865 -49.291,-38.3564 -45.813,-40.4593 -63.926,-97.6023 -675.519,-999.80051 -7.827,-331.46139 70.51,-98.3197 84.163,-237.82841 73.031,-141.08311 z"/>
             <path d="m 8240.5,3681 64,-106.5 104,-132.5 103.5,-242 81,-145 133,-156 208.5,-231.5 266,-318 427,-519 538,-640 165,-152 31,-37 20,-28.5 26,-23.5 h 1 l 26,-7 33,7 28,26 107,164 -417,601 -7.5,17.5 269.5,136.5 49.5,29.5 -258.5,430.75 -38.5,56.75 -125,203.5 -272.5,456.5 -5,21 -17,44 -81.5,135.5 -160.25,260.5 -160.75,257 -18.5,44 -402,671 -211,343 -23,-8 -27,-13 -32,-56.5 -47,-121.5 -25.5,-123 -38.5,-121 -57,-137 -44,-99 -73,-143 -28.5,-68 -27.5,-82 -42.5,-143.5 -22.75,-38.25 z"/>
             <path d="M 11468.492,2380.4866 10155.508,4821.4845 10104,4880.5 l -162,298 -100,50.5 -66.5,9 -55,-5.5 -127,232 45,-15 33,-38 25.5,-53.5 33.5,-19 76,-33 71,-9.5 29.8107,-4.0223 158.8253,29.473 64.63,17.2154 109.003,44.1768 82.854,37.6408 120.278,20.7601 95.937,-12.6149 42.622,-12.6494 58.309,-13.8507 70.576,-29.7381 54.217,-13.3823 106.486,-13.0658 140.889,-14.5519 97.14,-10.4851 71.402,-10.1625 94.72,-12.4363 64.066,-2.6888 56.266,0.3785 58.997,3.4608 62.697,9.5217 71.211,18.2383 -2.639,-21.2905 -9.805,-12.9781 4.836,-19.8579 -3.104,-18.6101 16.447,-27.5938 18.094,-12.5637 23.72,3.0128 23.707,0.091 50.948,-51.6557 20.298,-43.488 42.372,-77.739 21.703,-32.1461 30.09,-29.7452 27.037,-45.5658 22.97,-27.1486 18.19,-24.6834 16.504,-18.9459 14.964,-8.4023 18.09,-18.334 33.392,-40.0646 17.814,-31.123 20.454,-69.152 23.84,-32.9532 14.984,-25.8871 21.209,-28.6261 20.219,-31.5204 11.472,-65.1699 -2.811,-10.1395 -16.705,-16.359 -5.62,-7.7293 4.481,-21.3584 13.563,-11.316 11.708,-13.711 -6.713,-34.0895 -2.715,-18.9445 v -79.6339 l -1.979,-18.1347 -1.958,-49.5107 -18.97,-50.8511 6.92,-16.6624 6.962,-9.0151 -4.935,-13.5375 -4.18,-22.5471 -9.114,-19.9063 -4.742,-17.9136 -6.876,-66.9898 12.092,-22.3228 8.348,-21.4418 4.651,-14.1177 18.339,-24.8448 12.501,-12.8901 12.408,-14.6006 15.494,-1.5805 12.843,-3.0307 h 19.88 l 11.041,-6.5512 7.108,-9.2516 23.264,-64.0557 v -42.4988 l 4.123,-14.9924 v -19.0798 l -6.315,-16.4074 -32.144,-32.2643 2.404,-30.1022 v -25.7058 l 2.045,-15.1476 -2.336,-18.5359 v -14.6082 l 6.975,-24.9811 6.958,-11.4934 6.413,-14.9101 1.856,-8.232 9.512,-19.5344 -1.523,-12.6957 -4.747,-7.519 -11.336,-9.3106 -0.739,-35.685 -3.11,-18.4511 -7.405,-28.966 -5.168,-10.9906 -6.538,-8.2701 -5.118,-12.3288 4.426,-17.7483 7.506,-19.1201 2.181,-18.4532 16.018,-15.9327 0.133,-16.1556 16.003,-26.9769 4.006,-20.9509 1.703,-15.6358 9.639,-17.6148 10.021,-12.0718 8.646,2.3611 8.686,13.067 2.335,9.3831 3.921,2.4973 h 1.854 l 14.282,-4.0547 8.407,-10.136 14.522,-7.7682 16.616,-14.2988 13.971,-20.6668 18.557,-9.4742 16.251,-14.2708 11.392,-15.6092 16.979,-9.3382 12.585,-11.1493 13.14,-13.2239 0.238,-11.591 -9.08,-14.1229 -13.164,-16.7962 -2.867,-19.0805 -6.54,-8.7151 -3.017,-17.0969 v -44.619 l 24.765,-29.5603 -250.893,-305.6761 -137.489,-129.8919 -167.502,-135.6127 -79.255,-39.0474 -59.273,-20.0057 -72.073,-3.8256 -63.279,-4.8323 -62.181,-9.5142 z"/>
             <path d="m 9783.5446,5465.3296 -70.6517,989.7478 -771.509,-107.6217 -137.806,-38.6053 -138.088,-85.7477 -121.02,27.8362 -54.663,-10.183 -571.1994,-137.5607 -844.3373,-199.0843 -47.6925,-109.7986 75.1425,-175.5483 19.9283,-122.5692 570.163,-1010.982 520.8216,-534.8753 1.2339,13.3249 -0.1909,18.7574 -1.0761,35.973 5.3853,29.7046 25.2358,36.5492 20.8472,34.5771 23.4804,46.0997 11.0539,54.8809 43.594,106.1561 61.6983,105.2696 14.1267,20.7667 21.9797,43.7225 22.1001,47.2356 21.9355,77.7446 69.2779,211.3541 13.8592,31.8297 19.4324,22.5203 50.9179,32.518 66.8199,-0.3124 39.107,9.8838 54.1457,36.7139 184.4499,97.5505 95.413,78.2526 75.0548,72.2443 41.5291,53.5997 62.6453,118.3327 34.0036,54.1636 35.4025,64.6291 12.7797,14.8049 8.5521,6.9756 12.2078,7.831 70.6673,60.4674 48.0432,35.4588 38.8562,13.5805 107.8999,-16.3771 48.5216,-27.2151 35.2904,-40.933 38.4406,-49.8084 z"/>
+            <path d="m 2316.5,5926 19,9 7.5,-5.5 V 5906 l -12,6.5 z"/>
             <path d="m 1382.7886,11219.975 53.3583,-53.149 7.0721,-3.503 6.726,0.11 6.1132,2.887 3.1665,3.108 37.2576,72.986 0.051,3.884 -1.6502,3.505 -3.0067,2.865 -84.4006,21.018 -52.1354,10.406 -31.4675,3.424 -3.513,-2.09 -1.6222,-2.976 0.7739,-3.989 16.3453,-16.546 z"/>
+            <path d="m 485.5,6553.5 32.5,-2 77,-10.5 77.5,-7 77.5,-9.5 51,-4 6,3 2,14 -5.5,6.5 -39.5,1.5 -42.5,4 -114.5,12.5 -53,7 -25.5,6 z"/>
             <path d="m 2132.5157,9621.488 h 1.9938 l 8.7736,2.131 54.2878,58.025 34.9304,38.872 8.1041,10.124 -1.0007,8.538 -2.1891,4.337 -4.7847,4.695 -219.6773,70.293 -12.7878,5.155 -13.9914,3.833 -2.2749,0.06 -12.1451,-2.107 -11.2805,-3.964 -64.9777,-68.945 -1.0383,-5.123 0.013,-3.118 2.8615,-8.762 4.081,-3.814 218.0827,-106.293 z"/>
             <path d="m 10613.977,1217.6174 27.632,-1.2592 55.792,84.8498 -0.901,22.292 -22.909,38.1741 -25.013,1.6654 -78.492,-45.503 -8.369,-27.1007 z"/>
             <path d="m 3838.4736,8452.5328 -92.8376,136.9944 -16.9191,0.9891 -9.2226,-10.0432 1.0453,-91.3868 5.4842,-11.1871 7.5708,-6.4034 75.8834,-26.0276 13.6407,-1.6862 9.3452,1.8025 6.0643,5.8281 z"/>
-            <path d="m 3964.5378,7068.3899 -185.0702,68.1325 -7.7499,0.022 -5.1436,-1.9728 -5.1037,-4.9475 -1.0611,-3.2294 0.1873,-58.8896 7.1508,-9.0648 7.7749,-3.1197 5.8653,1.1782 45.8673,4.097 74.6333,-0.08 13.2719,-2.0263 42.853,-4.0475 5.4688,-0.023 3.6522,3.4277 1.4462,4.6142 -2.0302,4.2095 z"/>
+            <path d="m 2617.5,6664.5 -5,-5 v -5 l 8.5,-29.5 1,-10 0.5,-4.5 6.5,-9 8,-7.5 4.5,-3 3.5,-1 h 3.5 l 5,0.5 6.5,2 21.5,8.5 146,75 152.5,79.5 257.5,122.5 23,10.5 27,10 47.5,16.5 118.5,33 59,14.5 152.5,25.5 16,2.5 35.5,3.5 17,1.5 43,3.5 61,1 50,0.5 67.5,-3 57.5,-1.5 170.5,-30 185.5,-44 -166,77.5 -442.5,160.5 -10,-1 -5,-3.5 -3.5,-7 -1,-66 -4.5,-11.5 -8.5,-10.5 -12,-7 -396,-102 z"/>
             <path d="m 1375,14568 v 2.5 l 2,8 5,1 48.75,1 13,-12.5 -3.25,-92.25 -1,-4 -2,-2 h -6 l -4,2 -2,2 z"/>
             <path d="m 3831.5027,10032.715 82.7926,-6.216 48.0554,2.142 52.2457,20.364 -7.958,19.793 -127.3788,210.676 -10.7291,-0.954 -47.0754,-223.836 z"/>
           </g>
@@ -119,38 +522,38 @@
               </text>
             </g>
             <g id="g1" fill="#633">
-              <path d="m 661.5,6229.5 145.974,3.995 2.026,2.005 2,228 -169,14 -1,-240 z"/>
-              <text x="728" y="6355">1</text>
-              <path d="m 1310.3614,6011.8806 -7.7608,11.8461 -49.1139,-28.2196 -302.48737,-111.5108 -36.7409,71.1508 -8.91797,28.6297 -3.84522,22.7696 -9.99545,61.9618 -3.7539,60.5009 8.16946,50.4959 16.25889,10.0731 126.36606,1.9184 62.9124,-3.3278 56.6536,-8.2538 236.1417,-10.4181 6.3389,-49.0133 43.4131,-85.4832 -67,-38 18.7698,-33.9243 4.9502,14.1787 20.3907,11.202 10.2972,-3.1312 26.6078,-61.4844 5.1856,-16.3782 1.6071,-8.2679 -3.9331,-11.3141 -142.723,-57.5011 -241.9952,-118.1108 -39.9081,52.9298 -35.749,14.3015 -43.05445,85.4849 306.05445,120.0151 z m 97.2442,156.3659 51.7061,10.1245 127.5376,29.9275 17.0971,-40.0967 12.5283,-35.8224 L 1455.481,6041.2887 1413,6124 z"/>
+              <path d="m 661.5,6212 145.974,3.995 2.026,2.005 2,204.5 -169,14 V 6220 Z"/>
+              <text x="728" y="6325.5">1</text>
+              <path d="m 1310.3614,6011.8806 -7.7608,11.8461 -49.1139,-28.2196 -302.48737,-111.5108 -31.62707,5.4778 -25.56134,68.5624 -8.91797,28.6297 -6.29104,25.9051 -13.99565,61.9618 -12.90622,81.5212 12.43361,29.7681 48.04059,3.7557 126.36606,1.9184 62.9124,-3.3278 56.6536,-8.2538 L 1335,6175 l 35,-70 56.5,-70 36,-38 -64.5,-44 12,-23 12.5,17.5 20.5,12.5 h 3.5 l 18.5,-31.5 5,-18.5 -0.5,-13.5 -8.6247,-8.6191 -142.723,-57.5011 -241.9952,-118.1108 -14.1571,6.231 -31,34 -53,13 -39.14412,78.7806 6.44555,16.4852 L 1263.5,5985.0003 Z M 1352,6170 l 8.5,6 99.5,8 140,28 15,-32 25,-50 -40,-40 -95,-60 -20,-5 -18.5,2 -24.5,8.5 -67,84.5 z"/>
               <text x="1222" y="5882">1</text>
-              <text x="1260" y="6087">2</text>
-              <text x="1342" y="6154">3</text>
-              <path d="m 1582.4955,6370.4506 49.0081,-207.5257 11.814,-11.7382 57.4967,8.4803 57.8172,10.8826 49.3565,14.6695 31.1462,1.8656 h 41.6603 l 57.2518,-23.5763 78.4537,-50.0084 -21.1285,229.2161 z"/>
+              <text x="1153" y="6073">2</text>
+              <text x="1299" y="6154">3</text>
+              <path d="m 1576,6351.5 15.455,-72.6992 25.4507,-50.9762 L 1636.5,6165.5 1660,6150 h 50 l 70,15 51,15.5 32.5,4.5 15.7945,-1.9153 58.7518,-19.5763 L 2016.5,6118 l -19,202.5 -125,3.5 z"/>
               <text x="1659" y="6192">1</text>
               <text x="1973" y="6222">2</text>
-              <text x="1800" y="6322">3</text>
+              <text x="1800" y="6309">3</text>
               <text x="1814" y="6209">7</text>
-              <path d="m 2029.9178,6232.563 267.1089,32.2363 227.6889,23.2574 -26.4337,160.4607 -121.3116,-38.9301 -155.31,-39.3192 -201.135,-25.2124 z"/>
-              <text x="2176" y="6306">1</text>
-              <text x="2405" y="6340">A</text>
-              <path d="m 2043.5,6105.7496 44.567,-13.7752 35.6505,-11.9104 11.5927,6.4719 4.8655,15.6682 15.3625,14.8881 83.8121,9.4637 1.5453,-13.963 -77.7221,-7.4146 -11.9666,-9.8664 -5.7768,-20.6145 25.8694,-12.9061 30.0159,-22.1555 94.907,-90.5098 38.771,19.6267 2.777,94.3086 6.2425,11.7584 11.1001,9.9806 6.387,3.6993 196,39 -23,141.75 -503,-52.75 z"/>
+              <path d="m 2030,6227.5 265,27.5 230,32 -24.5,132 -118.19,-36.1808 L 2227,6343.5 2022.5,6320 Z"/>
+              <text x="2176" y="6291.5">1</text>
+              <text x="2405" y="6331">A</text>
+              <path d="m 2043.5,6105.7496 65.6999,-19.6234 18.7901,-6.9232 6.8314,14.2637 8.6458,11.2954 92.7189,13.9715 65.8653,3.5092 0.8145,-13.3835 -62.3098,-3.666 -80.8536,-12.6713 -11.6349,-5.2906 -7.9456,-12.0964 28.3223,-14.5928 32.8711,-20.9064 94.907,-90.5098 38.2776,3.374 3.2704,110.5613 6.2425,11.7584 11.1001,9.9806 6.387,3.6993 196,39 -26,142.0004 -500,-53.0004 z"/>
               <text x="2173" y="6175">1</text>
               <text x="2408" y="6184">B</text>
               <text x="2272" y="6049">E</text>
-              <path d="m 791.56673,5703.9756 26.46917,-12.8156 101.30285,55.2003 12.18044,27.2153 -45.51013,84.4621 -29.38497,72.0733 -12.29243,35.7551 -9.86532,36.8741 -8.08888,34.8834 -6.99501,37.0494 -5.22578,37.4918 -8.66932,78.329 -143.55567,-6.9953 -10.65365,-15.0281 11.60773,-90.1389 8.55084,-40.916 9.77381,-40.0505 22.31105,-81.4824 12.82097,-39.4913 30.9997,-85.0675 z"/>
+              <path d="m 792.7887,5698.5052 26.46917,-12.8156 101.30285,55.2003 12.18044,27.2153 -45.51013,84.4621 -29.38497,72.0733 -12.29243,35.7551 -9.86532,36.8741 -8.08888,34.8834 -6.99501,37.0494 -5.22578,37.4918 -8.66932,78.329 -143.55567,-6.9953 L 652.5,6163 l 11.60773,-90.1389 8.55084,-40.916 9.77381,-40.0505 22.31105,-81.4824 12.82097,-39.4913 30.9997,-85.0675 z"/>
               <text x="772" y="5949">2</text>
-              <path d="m 882.25002,6229.0055 145.25828,3.5068 47.961,-2.0394 150.408,-10.7267 81.5394,-4.8995 86.5218,-0.8197 89.8337,6.9147 91.1727,13.7104 4.7164,13.9658 -30.5564,131.8271 -311.6374,35.183 -123.8909,12.6258 -40.2279,4.7888 -56.8145,3.3966 -126.39979,13.0185 -11.46648,-13.7907 -8.04655,-55.1669 1.8596,-132.0516 z"/>
-              <text x="1225.5" y="6320">3</text>
-              <path d="m 2697.6526,5541.9304 -49.316,251.0329 -54.654,-14.5839 -20.7232,1.8001 -32.0475,7.3044 -198.5861,94.5775 -33.8673,27.1356 -105.3673,102.7876 -25.865,20.1758 -44.8365,21.3635 -44.4697,17.0806 -85.8011,42.3305 -70.3295,38.8454 -26.2751,16.0981 -21.8141,6.391 -17.7559,0.5922 -19.2588,-3.9884 -70.0812,-23.117 -22.9633,-4.739 -48.4351,-1.6626 -27.6753,-6.6361 -35.4401,-18.6278 -182.9523,-107.9611 -7.7996,-9.1993 -0.5979,-8.4292 29.3305,-74.0184 8.6223,-24.4205 -2.1383,-10.2367 -19.2798,-12.3775 -106.6701,-46.2364 -56.4342,-24.6625 -217.1516,-106.1144 55.4922,-119.9234 -32.114,-43.1335 -19.4925,-63.6086 -9.2307,-61.0151 4.0813,-24.8149 58.0877,-110.7569 47.5674,-70.6826 10.0639,-23.3805 9.6201,-25.3047 5.2024,-41.3372 -23.8928,-0.8602 -2.7974,25.222 -21.594,49.1526 -41.9417,63.2759 -61.206,119.0388 -6.8278,19.5876 -2.5009,22.2814 1.5369,22.3379 2.1166,18.3038 7.2787,28.1711 11.6517,33.4634 14.0222,40.8001 28.6635,33.9638 -47.4787,81.536 -51.6433,74.5295 -32.63938,-1.2605 L 734.75,5604.25 720.5,5629 l 42.13613,24.5261 -0.25461,27.7064 -67.30985,138.8633 -51.08574,178.82 -29.25807,150.7801 -8.53177,278.5852 -85.96359,8.2516 -18.72184,-177.7955 -16.63897,-85.8146 -6.45008,-62.6981 0.8932,-122.3294 3.61254,-52.163 12.52275,-85.7823 -1.23736,-44.0451 7.5323,-25.2402 6.71826,-28.4632 8.0002,-18.191 3.95238,-17.0532 -0.0408,-27.0207 -26.58019,-48.6908 -30.79863,-26.7512 -21.82203,-31.6187 7.70514,-26.2577 14.53952,-7.9389 12.76701,3.0889 17.69595,24.9835 17.5725,2.0259 27.60629,-6.4571 19.2929,-10.3844 11.84865,-42.7569 12.5961,-33.626 17.02178,-26.0581 33.05912,-78.229 39.0334,-71.0309 6.61897,-31.5076 17.61867,-17.3017 22.9068,-13.6709 41.12179,-16.3595 28.49031,-40.0561 6.10398,-20.0452 15.80976,-29.3037 21.76949,-8.1986 16.11806,-10.5192 16.50287,-19.0609 28.4052,-62.8595 15.05021,-16.8643 22.99582,-19.8029 40.03442,-26.9173 22.49205,-17.735 14.35791,-12.6026 19.9097,-19.1405 14.0519,-18.8851 16.9647,-27.9658 46.7971,-57.4735 17.5048,-30.1619 6.5013,-29.7903 14.679,-35.9373 12.8718,-21.9207 15.4962,-15.2046 27.2549,-12.2605 23.5873,-14.1358 7.2867,6.8111 63.4594,31.909 25.7472,35.1251 2.0836,40.7484 -8.7476,28.7908 41.1758,155.895 30.4297,93.5169 5.1857,22.4378 2.8629,38.7557 -4.7589,45.9193 -15.0395,77.4343 -24.2933,48.0621 -34.7949,51.4846 -48.1742,94.6807 1.1106,16.2152 -4.4373,52.8856 5.9496,57.4207 2.6885,42.7848 23.0383,45.9016 23.8472,23.1355 48.3628,13.3644 77.6844,38.1885 48.6524,33.2565 77.5442,39.9826 67.918,38.023 65.9141,35.2323 52.3938,31.2242 67.5996,38.4531 33.6365,16.3962 70.0857,11.9587 54.5849,-7.2197 66.8042,-29.7079 80.22,-37.4173 90.9123,-76.3067 76.3476,-40.7803 67.8728,-46.168 64.6115,-47.1115 107.6559,-61.1631 z"/>
+              <path d="m 861.51874,6224.6234 165.98956,2.6465 47.961,-2.0394 150.408,-10.7267 78.8007,-8.6572 87.9169,-0.6958 91.3311,5.632 99.6152,19.0847 4.7164,13.9658 -13.991,32.9785 L 1555.5,6352 l -311.6374,35.183 -123.8909,12.6258 -40.2279,4.7888 -56.8145,3.3966 -149.13107,10.3789 -20.52951,-13.5128 -3.37862,-28.7422 1.8596,-132.0516 z"/>
+              <text x="1204" y="6306">3</text>
+              <path d="m 2697.6526,5541.9304 -49.316,251.0329 -54.654,-14.5839 -20.7232,1.8001 -32.0475,7.3044 -198.5861,94.5775 -33.8673,27.1356 -105.367,99.3871 -25.865,20.1758 -47.6367,22.3638 -44.4697,17.0806 -79.0011,32.0297 -74.619,44.6655 -26.4753,10.5287 -21.8141,6.391 -17.7559,0.5922 -19.2588,-3.9884 L 1792.5,6147 l -33.9633,-6.239 -55.8614,-10.6249 L 1675,6123.5 l -32.5,-21 -50.5,-46.5 -104.5,-68.5 -7.5,-10 v -20 l 12.5,-37.5 2.5,-22.5 -10,-22.5 -20,-15 -104.3947,-36.7883 -56.4342,-24.6625 -217.1516,-106.1144 63.4805,-136.9348 -39,-40.5 -20.5948,-49.2307 -9.2307,-61.0151 4.0813,-24.8149 58.0877,-110.7569 47.5674,-70.6826 10.0639,-23.3805 9.6201,-25.3047 5.2024,-41.3372 -23.8928,-0.8602 -2.7974,25.222 -21.594,49.1526 -41.9417,63.2759 -61.206,119.0388 -6.8278,19.5876 -2.5009,22.2814 1.5369,22.3379 2.1166,18.3038 7.2787,28.1711 11.6517,33.4634 25.3794,34.0483 27,24 -82,144.5 -26,26.5 -33.45508,0.5206 L 734.75,5604.25 720.5,5629 l 47,24.5 1,15 -73.42833,151.5958 -51.08574,178.82 -29.25807,150.7801 L 606,6428.5 h 36.5 v 8 l -122.2675,0.033 -18.72184,-177.7955 -16.63897,-85.8146 -6.45008,-62.6981 0.8932,-122.3294 3.61254,-52.163 12.52275,-85.7823 -1.23736,-44.0451 7.5323,-25.2402 6.71826,-28.4632 8.0002,-18.191 3.95238,-17.0532 -0.0408,-27.0207 -26.58019,-48.6908 -30.79863,-26.7512 -21.82203,-31.6187 7.70514,-26.2577 14.53952,-7.9389 12.76701,3.0889 17.69595,24.9835 17.5725,2.0259 27.60629,-6.4571 19.2929,-10.3844 11.84865,-42.7569 12.5961,-33.626 17.02178,-26.0581 33.05912,-78.229 39.0334,-71.0309 6.61897,-31.5076 17.61867,-17.3017 22.9068,-13.6709 41.12179,-16.3595 28.49031,-40.0561 6.10398,-20.0452 15.80976,-29.3037 21.76949,-8.1986 16.11806,-10.5192 16.50287,-19.0609 28.4052,-62.8595 15.05021,-16.8643 22.99582,-19.8029 40.03442,-26.9173 22.49205,-17.735 14.35791,-12.6026 19.9097,-19.1405 14.0519,-18.8851 16.9647,-27.9658 46.7971,-57.4735 17.5048,-30.1619 6.5013,-29.7903 14.679,-35.9373 12.8718,-21.9207 15.4962,-15.2046 27.2549,-12.2605 23.5873,-14.1358 7.2867,6.8111 63.4594,31.909 25.7472,35.1251 2.0836,40.7484 -8.7476,28.7908 41.1758,155.895 30.4297,93.5169 5.1857,22.4378 2.8629,38.7557 -4.7589,45.9193 -15.0395,77.4343 -24.2933,48.0621 -34.7949,51.4846 -48.1742,94.6807 1.1106,16.2152 -4.4373,52.8856 5.9496,57.4207 2.6885,42.7848 23.0383,45.9016 23.8472,23.1355 48.3628,13.3644 77.6844,38.1885 48.6524,33.2565 77.5442,39.9826 67.918,38.023 65.9141,35.2323 52.3938,31.2242 67.5996,38.4531 33.6365,16.3962 70.0857,11.9587 54.5849,-7.2197 66.8042,-29.7079 80.22,-37.4173 90.9123,-76.3067 76.3476,-40.7803 67.8728,-46.168 64.6115,-47.1115 107.6559,-61.1631 z"/>
               <text x="610" y="5914">3</text>
               <text x="913" y="5653">B</text>
-              <path d="m 2491.7047,5830.4085 65.3078,-24.7265 18.9153,-5.0802 14.7569,-0.4088 13.7327,6.4496 4.9139,11.9147 -0.6087,46.3067 -12.1748,65.4767 -9.8098,81.3399 -6.3944,43.215 -11.8927,45.5886 -45.0263,-9.4534 -22.8299,-4.2903 -40.1905,-8.3466 z"/>
+              <path d="m 2491.7047,5830.4085 65.3078,-24.7265 18.9153,-5.0802 14.7569,-0.4088 13.7327,6.4496 4.9139,11.9147 -0.6087,46.3067 -12.1748,65.4767 -11.8096,81.3398 -7.5942,44.4155 -9.793,43.088 -43.9264,-8.1532 -22.8299,-4.2903 -40.1905,-8.3466 z"/>
               <text x="2535" y="5952">C</text>
               <path d="m 2368.1372,5895.4682 42.9453,-29.8717 56.6005,-25.5415 -26.426,235.5229 -63.7101,-7.9998 -9.2488,-9.6424 z"/>
               <text x="2413" y="5965">D</text>
             </g>
             <g id="g2" fill="#633">
-              <path d="m 2216.5446,6431.498 h 1.9664 l 299.0796,90.7382 85.9028,20.6773 -80.3115,352.1758 -42.2054,18.2304 -51.7208,-20.6639 -62.0685,-23.5108 -102.076,-31.8148 -52.1455,-13.9043 -42.4584,-4.1525 -6.4276,-11.1038 -7.5799,-18.2301 z"/>
+              <path d="M 2216.5446,6431.498 2423,6487.5 l 93.5,41 76.5,32 -69.8181,334.5893 -42.2054,18.2304 -51.7208,-20.6639 -62.0685,-23.5108 -102.076,-31.8148 -52.1455,-13.9043 -42.4584,-4.1525 -6.4276,-11.1038 -7.5799,-18.2301 z"/>
               <text x="2336" y="6667">6</text>
               <text x="2516" y="6720">14</text>
               <path d="m 1635.377,6436.6956 394.0146,-28.1056 112.1203,19.6012 -69.6578,350.9629 -26.3877,20.7413 -77.7186,-6.4323 -121.2206,5.4655 -146.4977,12.9788 -33.4325,-18.2127 z"/>
@@ -460,7 +863,7 @@
               <text x="5854" y="7022">P</text>
             </g>
             <g id="g25" fill="#969">
-              <path d="m 2697.7831,5542.0132 75.3609,-36.6814 112.5163,-38.1613 121.3605,-28.5616 110.2382,-22.4088 80.9574,-17.2451 157.3963,-39.1644 131.3457,-27.4443 92.7153,-34.8131 76.2043,-38.8999 62.7027,-41.3269 118.5988,-84.3805 132.3988,-86.594 106.9873,-89.1569 101.1633,-78.6206 38.0029,-45.2746 63.7503,-57.4888 34.4223,-22.0091 94.4935,2036.224 -156.5112,56.4322 -79.2923,20.7943 -61.7471,9.8375 -4.1937,-279.9862 3.8353,-4.4692 62.4833,-3.9231 -1.9276,-27.0316 6.2778,-11.9279 164.9846,-15.9902 -0.6715,-16.097 2.3284,-0.4015 -1.9238,-10.6322 -65.6282,6.2671 0.1239,8.787 -88.7913,7.1735 -4.8069,-1.9888 -2.1599,-4.214 5.7865,-244.8237 29.061,-730.8846 -8.0402,0.1004 -0.083,-96.5338 3.2512,-191.7815 -5.1582,-12.5129 -14.25,-12.4513 -3.7226,0.5508 -32.0286,1293.1095 -4.3488,12.5486 -66.3672,21.0873 7.0081,144.3163 3.6141,157.1391 -7.8253,16.9971 -111.9325,16.1911 -71.1883,-1.9476 -5.329,-2.1943 -78.4907,6.856 -237.4108,-13.811 -442.8786,-170.8873 -389.5633,-184.6339 -242.0041,-73.8155 80.0844,-359.3096 z"/>
+              <path d="m 2697.7831,5542.0132 75.3609,-36.6814 112.5163,-38.1613 121.3605,-28.5616 110.2382,-22.4088 80.9574,-17.2451 157.3963,-39.1644 131.3457,-27.4443 92.7153,-34.8131 76.2043,-38.8999 62.7027,-41.3269 118.5988,-84.3805 132.3988,-86.594 106.9873,-89.1569 101.1633,-78.6206 38.0029,-45.2746 63.7503,-57.4888 34.4223,-22.0091 94.4935,2036.224 -156.5112,56.4322 -79.2923,20.7943 -61.7471,9.8375 -4.1937,-279.9862 3.8353,-4.4692 62.4833,-3.9231 -1.9276,-27.0316 6.2778,-11.9279 164.9846,-15.9902 -0.6715,-16.097 2.3284,-0.4015 -1.9238,-10.6322 -65.6282,6.2671 0.1239,8.787 -88.7913,7.1735 -4.8069,-1.9888 -2.1599,-4.214 5.7865,-244.8237 29.061,-730.8846 -8.0402,0.1004 -0.083,-96.5338 3.2512,-191.7815 -5.1582,-12.5129 -14.25,-12.4513 -3.7226,0.5508 -32.0286,1293.1095 -4.3488,12.5486 -66.3672,21.0873 7.0081,144.3163 3.6141,157.1391 -7.8253,16.9971 -111.9325,16.1911 -71.1883,-1.9476 -5.329,-2.1943 -78.4907,6.856 -237.4108,-13.811 L 3140.4448,6713.704 2750.8815,6529.0701 2515.5,6425 l 73.4618,-329.055 z"/>
               <text x="3512" y="6102">Lot. Rasmussem</text>
               <path d="m 6439.0369,4881.8329 -1.3776,11.1229 0.3254,6.556 2.6033,8.7061 3.6733,6.2223 4.9541,5.9885 5.47,4.2299 636.1781,330.8992 4.4872,0.082 4.0329,-2.1525 3.3152,-3.7484 464.5161,-841.3489 14.6968,-42.3133 138.6128,-424.4161 -32.7642,-25.0769 -34.4437,-20.8929 -64.9269,-36.7817 -51.1874,-43.0075 -46.1634,-46.0724 -45.219,-50.0221 -33.559,-66.9699 -22.3547,-25.7474 -51.9044,-25.4776 -54.8867,-12.0318 -65.6151,0.9196 -84.7814,13.159 -65.3531,15.878 -74.7611,16.4564 -73.0378,11.384 -115.2498,55.7655 -43.4876,17.624 -49.8504,29.1666 -46.3158,49.7257 -33.2532,46.0323 -36.0255,41.517 -39.9034,44.4555 -35.6865,49.0351 -48.2777,77.0964 -37.428,70.6352 -29.263,62.0645 -36.5167,95.7058 -8.0713,40.0576 -19.0359,60.0335 -25.6492,119.5534 -29.0595,103.2833 -104.3691,131.2584 -106.8818,93.2209 -108.5861,47.7394 -96.8348,-0.2747 -102.5171,-16.4285 -276.7184,-80.1281 -89.8146,-21.0503 -116.7271,-6.5823 -58.1226,-2.4003 -23.6527,0.025 -142.1708,2.8471 -131.1907,-3.8646 -158.0845,-15.5123 -65.8217,-19.3675 -94.0877,-17.8884 -70.2343,-7.1164 -61.0586,-3.4273 -58.0192,6.2105 -64.7288,29.3376 -43.5098,27.9351 94.4935,2036.224 24.4167,-7.9573 360.981,-188.796 305.447,-137.035 124.2668,-53.7172 223.3798,-335.0135 250.8477,-365.3418 92.8444,-152.9536 130.6412,-183.8532 115.0463,-168.3961 108.7365,-152.2933 170.877,-163.0401 554.9647,-320.1695 30.2745,52.3076 -273.3018,149.7522 -184.9275,112.1867 z"/>
               <text x="4950.5" y="5626.5">Ch. Retiro</text>
