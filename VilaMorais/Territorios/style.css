@@ -4,6 +4,8 @@
   font-family: sans-serif;
   margin: 0;
   user-select: none;
+  -webkit-user-select: none; /* Evita a seleção de texto */
+  -webkit-touch-callout: none; /* Impede o menu de contexto nativo */
 }
 
 footer,
