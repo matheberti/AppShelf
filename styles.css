@@ -33,10 +33,6 @@ div {
     widht: 30%;
 }
 
-div:hover {
-    transform: translateY(-3px);
-}
-
 img {
     height: 60px;
 }
