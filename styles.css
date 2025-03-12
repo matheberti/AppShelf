@@ -30,6 +30,7 @@ div {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s;
+    widht: 30%;
 }
 
 div:hover {
