@@ -75,7 +75,6 @@
 
   document.addEventListener("touchend", () => clearTimeout(touchTimer));
 
-
   let parameters
   try {
     parameters = await (await fetch("param.json")).json()
