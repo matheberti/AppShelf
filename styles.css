@@ -52,7 +52,7 @@ p {
 }
 
 button {
-    background-color: #39f;
+    background-color: red;
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -62,5 +62,5 @@ button {
 }
 
 button:hover {
-    background-color: #06c;
+    background-color: darkred;
 }
