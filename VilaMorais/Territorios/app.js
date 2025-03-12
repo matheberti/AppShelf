@@ -54,26 +54,22 @@
       }
     }
 
-    if (touch.type === "touchstart") {
-      touchTimer = setTimeout(() => {
-        if (coveredBlocks.size !== 0) {
-          warnUser("Limpe as quadras selecionadas antes de entrar no aplicativo de navegação.");
-        } else {
-          try {
-            const [latitude, longitude] = parameters[target.parentElement.id.replace("g", "i")][label];
-            const formattedLongitude = longitude < 100 ? `0${longitude}` : longitude;
+    if (touch.type === "contextmenu") {
+      if (coveredBlocks.size !== 0) {
+        warnUser("Limpe as quadras selecionadas antes de entrar no aplicativo de navegação.")
+      } else {
+        try {
+          const [latitude, longitude] = parameters[target.parentElement.id.replace("g", "i")][label]
+          const formattedLongitude = longitude < 100 ? `0${longitude}` : longitude
 
-            navigator.vibrate(200);
-            window.location.href = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=-16.6${latitude},-49.2${formattedLongitude}`;
-          } catch {
-            warnUser("As coordenadas da quadra não estão definidas.");
-          }
+          navigator.vibrate(200)
+          window.location.href = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=-16.6${latitude},-49.2${formattedLongitude}`
+        } catch {
+          warnUser("As coordenadas da quadra não estão definidas.")
         }
-      }, 500); 
+      }
     }
-  };
-
-  document.addEventListener("touchend", () => clearTimeout(touchTimer));
+  }
 
   let parameters
   try {
@@ -168,4 +164,11 @@
       }
     }
   })
+document.addEventListener("touchstart", event => {
+  if (event.target.tagName === "path") {
+    handleMapTouches(event);
+  }
+});
+
+document.addEventListener("contextmenu", event => event.preventDefault());
 })();
